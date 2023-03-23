@@ -1,3 +1,5 @@
+package ca.bcit.comp2522.termproject;
+
 public class Character {
     int STARTING_HAND_LIMIT = 5;
 
@@ -9,4 +11,9 @@ public class Character {
 //    private Card[];
     String name;
     private int xp;
+
+    public Character() {
+        // todo: make a set of characters for the player to choose from
+
+    }
 }
