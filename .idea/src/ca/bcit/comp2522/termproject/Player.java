@@ -1,18 +1,19 @@
 package ca.bcit.comp2522.termproject;
 
-public class Player extends Character{
+public class Player extends ca.bcit.comp2522.termproject.Character {
     private int XP_CAP = 100;
 
     private int special;
+    // special requires String description, int stat, int coolDown -> make a new Class for Special?
+    // so like a Card but has the extra cool down. Can be a card, just decrease the cool down every turn
     private int level;
 
     public Player(String name) {
-        super(name);
         level = 1;
     }
 
     public int useSpecial() {
-        // todo: useSpecial will do an action (atk/heal/defend) and then decay
+        // todo: useSpecial will do an action (atk/heal/defend) -> does not decay
         return 0;
     }
 
