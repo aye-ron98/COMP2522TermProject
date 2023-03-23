@@ -12,8 +12,18 @@ public class Character {
     String name;
     private int xp;
 
-    public Character() {
+    public Character(String name) {
         // todo: make a set of characters for the player to choose from
+        this.name = name;
+        xp = 0;
+    }
 
+    public Player scale() {
+    // todo: scale will be most likely giving the enemy a small multiplier on their stats based on how high the player's stats are
+    return null;
+    }
+
+    public int getXp() {
+        return xp;
     }
 }
