@@ -5,25 +5,27 @@ class Character {
     private int health;
     private int agility;
     private int defense;
+    private int DEFULT_DEFENSE;
     private Card[] cards;
     private static Random rand = new Random();
-    private Character(String n, int h, int a) {
+    private Character(String n, int h, int a, int d) {
         this.name = n;
         this.health = h;
         this.agility = a;
         this.cards = new Card[5];
-        this.defense = 0;
+        this.defense = d;
+        this.DEFULT_DEFENSE = d;
     }
 
     public static Character generateEnemyCharacter() {
         int generate = rand.nextInt(0, 6);
         return switch (generate){
-            case 0 -> new Character("Naturo", 10, 5);
-            case 1 -> new Character("Sakae", 10, 2);
-            case 2 -> new Character("Kakashi", 20, 10);
-            case 3 -> new Character("RockLee", 15, 15);
-            case 4 -> new Character("Yamato", 6, 5);
-            case 5 -> new Character("Hero", 17, 7);
+            case 0 -> new Character("Naturo", 10, 5, 3);
+            case 1 -> new Character("Sakae", 10, 2, 0);
+            case 2 -> new Character("Kakashi", 20, 10, 5);
+            case 3 -> new Character("RockLee", 15, 15, 2);
+            case 4 -> new Character("Yamato", 6, 5, 2);
+            case 5 -> new Character("Hero", 17, 4 , 2);
             default -> null;
         };
     }
@@ -37,6 +39,10 @@ class Character {
 
     public int getAgility() {
         return agility;
+    }
+
+    public int getDEFULT_DEFENSE() {
+        return DEFULT_DEFENSE;
     }
 
     public void setAgility(int agility) {
