@@ -1,3 +1,6 @@
+import java.util.Random;
+import java.util.Scanner;
+
 public class battle {
     private class Stack {
         Character[] characters;
@@ -90,11 +93,18 @@ public class battle {
         return c.returnCard(choice);
     }
 
+    public void resetDefense(Character c) {
+        c.setDefense(c.getDEFULT_DEFENSE());
+    }
+
     public void perform(Character current, Card c) {
         if (c.getAction() == Card.ACTION.ATTACK) {
             Character enemy = stack.peek();
+            int damageDealt = c.getValue() - enemy.getDefense();
 
-            enemy.setHealth(enemy.getHealth() - c.getValue());
+            if (damageDealt > 0) {
+                enemy.setHealth(enemy.getHealth() - c.getValue());
+            }
         } else if (c.getAction() == Card.ACTION.DEFEND) {
             current.setDefense(current.getDefense() + c.getValue());
         } else if (c.getAction() == Card.ACTION.HEAL) {
@@ -125,5 +135,81 @@ public class battle {
         return "battle{" +
                 "stack=" + stack +
                 '}';
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random rand = new Random();
+
+        Character enemy = Character.generateEnemyCharacter();
+        Character player = Character.generateEnemyCharacter();
+        battle b = new battle(enemy, player);
+
+        while (true) {
+            if (b.playerGoesFirst()) {
+                Character current = b.battleTurn();
+                System.out.println(b.showCards(current));
+
+                int choice = scanner.nextInt();
+
+                Card move = b.select(current, choice);
+                b.perform(current, move);
+
+                if (b.checkForVictory()) {
+                    System.out.println("You Win");
+                    break;
+                }
+
+                b.resetDefense(enemy);
+                b.checkStack();
+
+                current = b.battleTurn();
+                int enemyChoice = rand.nextInt(0, 5);
+
+                move = b.select(current, enemyChoice);
+                b.perform(current, move);
+
+                if (b.checkForVictory()) {
+                    System.out.println("Enemy Wins");
+                    break;
+                }
+
+                b.resetDefense(player);
+                b.checkStack();
+            } else {
+                int enemyChoice = rand.nextInt(0, 5);
+                Character current = b.battleTurn();
+
+                Card move = b.select(current, enemyChoice);
+                b.perform(current, move);
+
+                if (b.checkForVictory()) {
+                    System.out.println("enemy won");
+                    break;
+                }
+
+                b.resetDefense(player);
+                b.checkStack();
+
+                current = b.battleTurn();
+                System.out.println(b.showCards(current));
+
+                int choice = scanner.nextInt();
+                move = b.select(current, choice);
+
+                b.perform(current, move);
+
+                if (b.checkForVictory()) {
+                    System.out.println("You win");
+                    break;
+                }
+
+                b.resetDefense(enemy);
+                b.checkStack();
+            }
+
+        }
+
+
     }
 }
