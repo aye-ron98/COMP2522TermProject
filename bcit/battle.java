@@ -98,19 +98,73 @@ public class battle {
     }
 
     public void perform(Character current, Card c) {
-        if (c.getAction() == Card.ACTION.ATTACK) {
-            Character enemy = stack.peek();
-            int damageDealt = c.getValue() - enemy.getDefense();
 
-            if (damageDealt > 0) {
-                enemy.setHealth(enemy.getHealth() - c.getValue());
-            }
-        } else if (c.getAction() == Card.ACTION.DEFEND) {
-            current.setDefense(current.getDefense() + c.getValue());
-        } else if (c.getAction() == Card.ACTION.HEAL) {
-            current.setHealth(current.getHealth() + c.getValue());
+        Card.ACTION action = c.getAction();
+        Card.TYPE type = c.getType();
+        Card.TYPE tempPlayer;
+
+        Character nextPlayer = stack.peek();
+        Card.TYPE currentPlayerType = current.getType();
+        Card.TYPE nextPlayerType = nextPlayer.getType();
+
+        if (action == Card.ACTION.ATTACK) {
+            tempPlayer = nextPlayerType;
+        } else {
+            tempPlayer = currentPlayerType;
         }
-    }
+
+        double typeMultiplier;
+
+
+        if (type == Card.TYPE.AIR && tempPlayer == Card.TYPE.AIR) {
+            typeMultiplier = 1.0;
+        } else if (type == Card.TYPE.AIR && tempPlayer == Card.TYPE.EARTH) {
+            typeMultiplier = 0.2;
+        } else if (type == Card.TYPE.AIR && tempPlayer == Card.TYPE.FIRE) {
+            typeMultiplier = 0.8;
+        } else if (type == Card.TYPE.AIR && tempPlayer == Card.TYPE.WATER) {
+            typeMultiplier = 1.5;
+        } else if (type == Card.TYPE.FIRE && tempPlayer == Card.TYPE.AIR) {
+            typeMultiplier = 0.8;
+        } else if (type == Card.TYPE.FIRE && tempPlayer == Card.TYPE.EARTH) {
+            typeMultiplier = 0.2;
+        } else if (type == Card.TYPE.FIRE && tempPlayer == Card.TYPE.FIRE) {
+            typeMultiplier = 1.0;
+        } else if (type == Card.TYPE.FIRE && tempPlayer == Card.TYPE.WATER) {
+            typeMultiplier = 1.5;
+        } else if (type == Card.TYPE.EARTH && tempPlayer == Card.TYPE.AIR) {
+            typeMultiplier = 0.8;
+        } else if (type == Card.TYPE.EARTH && tempPlayer == Card.TYPE.EARTH) {
+            typeMultiplier = 0.2;
+        } else if (type == Card.TYPE.EARTH && tempPlayer == Card.TYPE.FIRE) {
+            typeMultiplier = 1.0;
+        } else if (type == Card.TYPE.EARTH && tempPlayer == Card.TYPE.WATER) {
+            typeMultiplier = 1.5;
+        } else if (type == Card.TYPE.WATER && tempPlayer == Card.TYPE.AIR) {
+            typeMultiplier = 0.8;
+        } else if (type == Card.TYPE.WATER && tempPlayer == Card.TYPE.EARTH) {
+            typeMultiplier = 0.2;
+        } else if (type == Card.TYPE.WATER && tempPlayer == Card.TYPE.FIRE) {
+            typeMultiplier = 1.0;
+        } else if (type == Card.TYPE.WATER && tempPlayer == Card.TYPE.WATER) {
+            typeMultiplier = 1.5;
+        } else {
+            typeMultiplier = 0;
+        }
+
+
+        if (action == Card.ACTION.ATTACK) {
+            int damageDealt = (int) ((c.getValue() - nextPlayer.getDefense()) * typeMultiplier);
+            if (damageDealt > 0) {
+                nextPlayer.setHealth(nextPlayer.getHealth() - c.getValue());
+            }
+        } else if (action == Card.ACTION.DEFEND) {
+            current.setDefense((int) ((current.getDefense() + c.getValue()) * typeMultiplier));
+        } else if (action == Card.ACTION.HEAL) {
+            current.setHealth((int) ((current.getHealth() + c.getValue()) * typeMultiplier));
+        }
+
+        }
 
     public boolean checkForVictory() {
         if (this.player.getHealth() < 0) {
@@ -124,10 +178,7 @@ public class battle {
     }
 
     public boolean playerGoesFirst() {
-        if (stack.peek() == player) {
-            return true;
-        }
-        return false;
+        return stack.peek() == player;
     }
 
     @Override
