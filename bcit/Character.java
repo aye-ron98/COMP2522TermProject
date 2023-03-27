@@ -6,26 +6,28 @@ class Character {
     private int agility;
     private int defense;
     private int DEFULT_DEFENSE;
+    private Card.TYPE type;
     private Card[] cards;
     private static Random rand = new Random();
-    private Character(String n, int h, int a, int d) {
+    private Character(String n, int h, int a, int d, Card.TYPE t) {
         this.name = n;
         this.health = h;
         this.agility = a;
         this.cards = new Card[5];
         this.defense = d;
         this.DEFULT_DEFENSE = d;
+        this.type = t;
     }
 
     public static Character generateEnemyCharacter() {
         int generate = rand.nextInt(0, 6);
         return switch (generate){
-            case 0 -> new Character("Naturo", 10, 5, 3);
-            case 1 -> new Character("Sakae", 10, 2, 0);
-            case 2 -> new Character("Kakashi", 20, 10, 5);
-            case 3 -> new Character("RockLee", 15, 15, 2);
-            case 4 -> new Character("Yamato", 6, 5, 2);
-            case 5 -> new Character("Hero", 17, 4 , 2);
+            case 0 -> new Character("Naturo", 10, 5, 3, Card.TYPE.AIR);
+            case 1 -> new Character("Sakae", 10, 2, 0, Card.TYPE.EARTH);
+            case 2 -> new Character("Kakashi", 20, 10, 5, Card.TYPE.FIRE);
+            case 3 -> new Character("RockLee", 15, 15, 2, Card.TYPE.FIRE);
+            case 4 -> new Character("Yamato", 6, 5, 2, Card.TYPE.EARTH);
+            case 5 -> new Character("Hero", 17, 4 , 2, Card.TYPE.FIRE);
             default -> null;
         };
     }
@@ -39,6 +41,10 @@ class Character {
 
     public int getAgility() {
         return agility;
+    }
+
+    public Card.TYPE getType() {
+        return type;
     }
 
     public int getDEFULT_DEFENSE() {
