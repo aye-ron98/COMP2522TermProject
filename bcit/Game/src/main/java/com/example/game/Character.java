@@ -1,21 +1,26 @@
+package com.example.game;
+
 import java.util.Random;
 
 class Character {
     private String name;
-    private int health;
+    private double health;
     private int agility;
     private int defense;
-    private int DEFULT_DEFENSE;
+    private double maxHealth;
+
+    private int defultDefense;
     private Card.TYPE type;
     private Card[] cards;
     private static Random rand = new Random();
-    private Character(String n, int h, int a, int d, Card.TYPE t) {
+    private Character(String n, double h, int a, int d, Card.TYPE t) {
         this.name = n;
         this.health = h;
         this.agility = a;
         this.cards = new Card[5];
         this.defense = d;
-        this.DEFULT_DEFENSE = d;
+        this.defultDefense = d;
+        this.maxHealth = h;
         this.type = t;
     }
 
@@ -31,9 +36,11 @@ class Character {
             default -> null;
         };
     }
-    public int getHealth() {
+    public double getHealth() {
         return health;
     }
+
+    public double getHealthPercent() { return this.maxHealth / this.health; }
 
     public int getDefense() {
         return defense;
@@ -48,14 +55,14 @@ class Character {
     }
 
     public int getDEFULT_DEFENSE() {
-        return DEFULT_DEFENSE;
+        return this.defultDefense;
     }
 
     public void setAgility(int agility) {
         this.agility = agility;
     }
 
-    public void setHealth(int health) {
+    public void setHealth(double health) {
         this.health = health;
     }
 
@@ -89,6 +96,22 @@ class Character {
         for (int i = 0; i < cards.length; i++) {
             this.cards[i] = Card.constructNewCard();
         }
+    }
+
+    public String getCardOne() {
+        return this.cards[0].toString();
+    }
+    public String getCardTwo() {
+        return this.cards[1].toString();
+    }
+    public String getCardThree() {
+        return this.cards[2].toString();
+    }
+    public String getCardFour() {
+        return this.cards[3].toString();
+    }
+    public String getCardFive() {
+        return this.cards[4].toString();
     }
 
     public void clearCards() {

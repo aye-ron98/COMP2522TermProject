@@ -1,3 +1,5 @@
+package com.example.game;
+
 import java.util.Random;
 
 public class Card {
