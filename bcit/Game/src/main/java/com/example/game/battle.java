@@ -6,61 +6,41 @@ import java.util.Scanner;
 public class battle {
 
     private class Stack {
-        Character[] characters;
-        Character lastReturned;
-        int size;
+        Card[] cards;
+        int size = 10;
         Stack() {
-            this.characters = new Character[10];
+            this.cards = new Card[size];
 
-            if (player.getAgility() > enemy.getAgility()) {
-
-                for (int i = 0; i < 10; i++) {
-                    if (i % 2 == 0) {
-                        characters[i] = player;
-                    } else {
-                        characters[i] = enemy;
-                    }
-                }
-            } else {
-
-                for (int i = 0; i < 10; i++) {
-                    if (i % 2 == 0) {
-                        characters[i] = enemy;
-                    } else {
-                        characters[i] = player;
-                    }
-                }
+            for (int i = 0; i < this.size; i++) {
+                cards[i] = Card.constructNewCard();
             }
 
-            this.size = 10;
         }
 
-        Character pop() {
+        Card pop() {
+            checkStack();
             this.size--;
-            Character toReturn = characters[this.size];
-            lastReturned = toReturn;
-            characters[this.size] = null;
+            Card toReturn = cards[this.size];
+            cards[this.size] = null;
 
             return toReturn;
         }
 
-        Character peek() {
-            if (this.size - 1 < 0) {
-                return lastReturned;
-            }
-            return characters[this.size - 1];
+        Card peek() {
+            checkStack();
+            return cards[this.size - 1];
+
         }
 
-        @Override
-        public String toString() {
-            String toPrint = "Stack {";
-            for (int i = 0; i < characters.length; i++) {
-                String temp = String.valueOf(characters[i]);
-                toPrint = toPrint.concat(temp);
+        void checkStack() {
+            if (this.size - 1 < 0) {
+                this.size = 10;
+
+                for (int i = 0; i < this.size; i++) {
+                    cards[i] = Card.constructNewCard();
+                }
+
             }
-            return "Stack{" +
-                    toPrint +
-                    '}';
         }
     }
 
@@ -73,24 +53,15 @@ public class battle {
         this.enemy = e;
 
         p.getCardsForBattle();
-        e.getCardsForBattle();
         this.stack = new Stack();
     }
 
-    void checkStack() {
-        if (stack.size == 0) {
-            this.stack = new Stack();
-        }
-    }
-
-    Character battleTurn() {
+    Card enemyTurn() {
         return this.stack.pop();
     }
 
-    public String showCards(Character c) {
-        String Cards = c.displayCards();
-        return "The following moves are available to you:" + Cards;
-    }
+    Card nextEnemyTurn() { return this.stack.peek(); }
+
     public Card select(Character c, int choice) {
         Card returnCard = c.returnCard(choice);
         System.out.printf("You have selected %s!\n", returnCard.toString());
@@ -181,89 +152,4 @@ public class battle {
         return false;
     }
 
-    public boolean playerGoesFirst() {
-        return stack.peek() == player;
     }
-
-
-    @Override
-    public String toString() {
-        return "battle{" +
-                "stack=" + stack +
-                '}';
-    }
-
-//    public void run(Character player, Character enemy) {
-//        Scanner scanner = new Scanner(System.in);
-//        Random rand = new Random();
-//
-//        battle b = new battle(player, enemy);
-
-//        while (true) {
-//            if (b.playerGoesFirst()) {
-//                Character current = b.battleTurn();
-////                System.out.println(b.showCards(current));
-//
-//                int choice = scanner.nextInt();
-//
-//                Card move = b.select(current, choice);
-//                b.perform(current, move);
-//
-//                if (b.checkForVictory()) {
-//                    System.out.println("You Win");
-//                    break;
-//                }
-//
-//                b.resetDefense(enemy);
-//                b.checkStack();
-//
-//                current = b.battleTurn();
-//                int enemyChoice = rand.nextInt(0, 5);
-//
-//                move = b.select(current, enemyChoice);
-//                b.perform(current, move);
-//
-//                if (b.checkForVictory()) {
-//                    System.out.println("Enemy Wins");
-//                    break;
-//                }
-//
-//                b.resetDefense(player);
-//                b.checkStack();
-//            } else {
-//                int enemyChoice = rand.nextInt(0, 5);
-//                Character current = b.battleTurn();
-//
-//                Card move = b.select(current, enemyChoice);
-//                b.perform(current, move);
-//
-//                if (b.checkForVictory()) {
-//                    System.out.println("enemy won");
-//                    break;
-//                }
-//
-//                b.resetDefense(player);
-//                b.checkStack();
-//
-//                current = b.battleTurn();
-//                System.out.println(b.showCards(current));
-//
-//                int choice = scanner.nextInt();
-//                move = b.select(current, choice);
-//
-//                b.perform(current, move);
-//
-//                if (b.checkForVictory()) {
-//                    System.out.println("You win");
-//                    break;
-//                }
-//
-//                b.resetDefense(enemy);
-//                b.checkStack();
-//            }
-//
-//        }
-
-
-    }
-//}

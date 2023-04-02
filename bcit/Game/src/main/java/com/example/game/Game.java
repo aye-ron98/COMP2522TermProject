@@ -17,7 +17,6 @@ public class Game extends Application {
 
         Scene scene = new Scene(fxmlLoader.load());
 
-
         stage.setTitle("Game");
         stage.setScene(scene);
 

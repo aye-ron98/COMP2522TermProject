@@ -83,35 +83,14 @@ class Character {
         return toReturn;
     }
 
-    public String displayCards() {
-        String toReturn = "\n";
-        for (int i = 0; i < cards.length; i++) {
-            String temp = i + " " + cards[i].toString() + '\n';
-            toReturn = toReturn.concat(temp);
-        }
-        return toReturn;
-    }
-
     public void getCardsForBattle() {
         for (int i = 0; i < cards.length; i++) {
             this.cards[i] = Card.constructNewCard();
         }
     }
 
-    public String getCardOne() {
-        return this.cards[0].toString();
-    }
-    public String getCardTwo() {
-        return this.cards[1].toString();
-    }
-    public String getCardThree() {
-        return this.cards[2].toString();
-    }
-    public String getCardFour() {
-        return this.cards[3].toString();
-    }
-    public String getCardFive() {
-        return this.cards[4].toString();
+    public String getCardName(int select) {
+        return this.cards[select].toString();
     }
 
     public void clearCards() {

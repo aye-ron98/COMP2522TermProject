@@ -21,12 +21,14 @@ public class GameController {
     private DialogPane DialougeText;
     @FXML
     private DialogPane enemyDialouge;
+    @FXML
+    private DialogPane nextEnemyTurn;
 
     @FXML
     private Button str;
 
     private void enemyTurn() {
-        move = battle.select(enemy, rand.nextInt(0, 5));
+        move = battle.enemyTurn();
 
         enemyDialouge.setContentText(String.format("%s has selected %s", enemy.toString(), move.toString()));
 
@@ -34,6 +36,23 @@ public class GameController {
 
         playerHealth.setWidth(player.getHealthPercent() * playerHealth.getWidth());
         EnemyHealth.setWidth(enemy.getHealthPercent() * EnemyHealth.getWidth());
+    }
+
+    private void playerTurn(int choice, Button button, Tooltip toolTip) {
+        nextEnemyTurn.setContentText(String.format("%s will use %s next!", enemy.toString(), battle.nextEnemyTurn().toString()));
+
+        move = battle.select(player, choice);
+        button.setText(player.getCardName(choice));
+        toolTip.setText(move.getDescription());
+
+        DialougeText.setContentText(String.format("%s has selected %s", player.toString(), move.toString()));
+
+        battle.perform(player, enemy, move);
+
+        playerHealth.setWidth(player.getHealthPercent() * playerHealth.getWidth());
+        EnemyHealth.setWidth(enemy.getHealthPercent() * EnemyHealth.getWidth());
+
+        enemyTurn();
     }
 
     @FXML
@@ -44,101 +63,56 @@ public class GameController {
     @FXML
     private Button cardOne;
     @FXML
-    protected void CardOneOnClick() {
-        move = battle.select(player, 0);
-        cardOne.setText(player.getCardOne());
-
-        DialougeText.setContentText(String.format("%s has selected %s", player.toString(), move.toString()));
-
-        battle.perform(player, enemy, move);
-
-        playerHealth.setWidth(player.getHealthPercent() * playerHealth.getWidth());
-        EnemyHealth.setWidth(enemy.getHealthPercent() * EnemyHealth.getWidth());
-
-        enemyTurn();
-    }
-    @FXML
     private Tooltip CardOneToolTip;
-
     @FXML
-    protected void CardOneToolTip() {
-        CardOneToolTip.setText(player.getCardOne());
+    protected void CardOneOnClick() {
+        playerTurn(0, cardOne, CardOneToolTip);
     }
 
     @FXML
     private Button cardTwo;
     @FXML
+    private Tooltip CardTwoToolTip;
+    @FXML
     protected void CardTwoOnClick() {
-        move = battle.select(player, 1);
-        cardTwo.setText(player.getCardTwo());
-
-        DialougeText.setContentText(String.format("%s has selected %s", player.toString(), move.toString()));
-
-        battle.perform(player, enemy, move);
-
-        playerHealth.setWidth(player.getHealthPercent() * playerHealth.getWidth());
-        EnemyHealth.setWidth(enemy.getHealthPercent() * EnemyHealth.getWidth());
-
-        enemyTurn();
+        playerTurn(1, cardTwo, CardTwoToolTip);
     }
     @FXML
     private Button cardThree;
     @FXML
+    private Tooltip CardThreeToolTip;
+    @FXML
     protected void CardThreeOnClick() {
-        move = battle.select(player, 2);
-        cardThree.setText(player.getCardThree());
-
-        DialougeText.setContentText(String.format("%s has selected %s", player.toString(), move.toString()));
-
-        battle.perform(player, enemy, move);
-
-        playerHealth.setWidth(player.getHealthPercent() * playerHealth.getWidth());
-        EnemyHealth.setWidth(enemy.getHealthPercent() * EnemyHealth.getWidth());
-
-        enemyTurn();
+        playerTurn(2, cardThree, CardThreeToolTip);
     }
     @FXML
     private Button cardFour;
     @FXML
+    private Tooltip CardFourToolTip;
+    @FXML
     protected void CardFourOnClick() {
-        move = battle.select(player, 3);
-        cardFour.setText(player.getCardFour());
-
-        DialougeText.setContentText(String.format("%s has selected %s", player.toString(), move.toString()));
-
-        battle.perform(player, enemy, move);
-
-        playerHealth.setWidth(player.getHealthPercent() * playerHealth.getWidth());
-        EnemyHealth.setWidth(enemy.getHealthPercent() * EnemyHealth.getWidth());
-
-        enemyTurn();
+        playerTurn(3, cardFour, CardFourToolTip);
     }
     @FXML
     private Button cardFive;
     @FXML
+    private Tooltip CardFiveToolTip;
+    @FXML
     protected void CardFiveOnClick() {
-        move = battle.select(player, 4);
-        cardFive.setText(player.getCardFive());
-
-        DialougeText.setContentText(String.format("%s has selected %s", player.toString(), move.toString()));
-
-        battle.perform(player, enemy, move);
-
-        playerHealth.setWidth(player.getHealthPercent() * playerHealth.getWidth());
-        EnemyHealth.setWidth(enemy.getHealthPercent() * EnemyHealth.getWidth());
-
-        enemyTurn();
+        playerTurn(4, cardFive, CardFiveToolTip);
     }
 
     @FXML
     protected void startGame() {
-        cardOne.setText(player.getCardOne());
-        cardTwo.setText(player.getCardTwo());
-        cardThree.setText(player.getCardThree());
-        cardFour.setText(player.getCardFour());
-        cardFive.setText(player.getCardFive());
+        cardOne.setText(player.getCardName(0));
+        cardTwo.setText(player.getCardName(1));
+        cardThree.setText(player.getCardName(2));
+        cardFour.setText(player.getCardName(3));
+        cardFive.setText(player.getCardName(4));
 
         str.setVisible(false);
+
+        nextEnemyTurn.setContentText(String.format("%s will use %s next!", enemy.toString(), battle.nextEnemyTurn().toString()));
     }
 
 }
