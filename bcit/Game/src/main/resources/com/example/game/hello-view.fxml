@@ -12,8 +12,8 @@
    <children>
       <Button fx:id="str" layoutX="342.0" layoutY="454.0" mnemonicParsing="false" onAction="#startGame" text="Start" />
       <Rectangle id="PlayerHealth" fx:id="playerHealth" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="34.0" layoutX="14.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" width="253.0" />
-      <Text layoutX="14.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player" wrappingWidth="62.13670349121094" />
-      <Text layoutX="519.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enemy" />
+      <Text fx:id="playerName" layoutX="14.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player" wrappingWidth="62.13670349121094" />
+      <Text fx:id="enemyName" layoutX="519.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enemy" />
       <Rectangle id="EnemyHealth" fx:id="EnemyHealth" arcHeight="5.0" arcWidth="5.0" fill="#ff371f" height="34.0" layoutX="519.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" width="253.0" />
       <Circle id="PlayerCharacter" fill="DODGERBLUE" layoutX="155.0" layoutY="209.0" radius="60.0" stroke="BLACK" strokeType="INSIDE" />
       <Circle id="EnemyCharacter" fill="#ff3b1f" layoutX="586.0" layoutY="209.0" radius="60.0" stroke="BLACK" strokeType="INSIDE" />

@@ -5,12 +5,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 
-import java.util.Random;
 
-public class GameController {
+public class GameController extends Thread{
 
-    Random rand = new Random();
     Character player = Character.generateEnemyCharacter();
     Character enemy = Character.generateEnemyCharacter();
 
@@ -23,9 +22,20 @@ public class GameController {
     private DialogPane enemyDialouge;
     @FXML
     private DialogPane nextEnemyTurn;
-
     @FXML
     private Button str;
+    @FXML
+    private Text playerName;
+    @FXML
+    private Text  enemyName;
+
+    private void pause() {
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
 
     private void enemyTurn() {
         move = battle.enemyTurn();
@@ -52,7 +62,6 @@ public class GameController {
         playerHealth.setWidth(player.getHealthPercent() * playerHealth.getWidth());
         EnemyHealth.setWidth(enemy.getHealthPercent() * EnemyHealth.getWidth());
 
-        enemyTurn();
     }
 
     @FXML
@@ -67,6 +76,8 @@ public class GameController {
     @FXML
     protected void CardOneOnClick() {
         playerTurn(0, cardOne, CardOneToolTip);
+        pause();
+        enemyTurn();
     }
 
     @FXML
@@ -75,7 +86,10 @@ public class GameController {
     private Tooltip CardTwoToolTip;
     @FXML
     protected void CardTwoOnClick() {
+
         playerTurn(1, cardTwo, CardTwoToolTip);
+        pause();
+        enemyTurn();
     }
     @FXML
     private Button cardThree;
@@ -83,7 +97,10 @@ public class GameController {
     private Tooltip CardThreeToolTip;
     @FXML
     protected void CardThreeOnClick() {
+
         playerTurn(2, cardThree, CardThreeToolTip);
+        pause();
+        enemyTurn();
     }
     @FXML
     private Button cardFour;
@@ -92,6 +109,9 @@ public class GameController {
     @FXML
     protected void CardFourOnClick() {
         playerTurn(3, cardFour, CardFourToolTip);
+        pause();
+        enemyTurn();
+
     }
     @FXML
     private Button cardFive;
@@ -100,6 +120,9 @@ public class GameController {
     @FXML
     protected void CardFiveOnClick() {
         playerTurn(4, cardFive, CardFiveToolTip);
+        pause();
+        enemyTurn();
+
     }
 
     @FXML
@@ -109,6 +132,9 @@ public class GameController {
         cardThree.setText(player.getCardName(2));
         cardFour.setText(player.getCardName(3));
         cardFive.setText(player.getCardName(4));
+
+        playerName.setText(player.toString());
+        enemyName.setText(enemy.toString());
 
         str.setVisible(false);
 

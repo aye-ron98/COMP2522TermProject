@@ -27,12 +27,12 @@ class Character {
     public static Character generateEnemyCharacter() {
         int generate = rand.nextInt(0, 6);
         return switch (generate){
-            case 0 -> new Character("Naturo", 10, 5, 3, Card.TYPE.AIR);
-            case 1 -> new Character("Sakae", 10, 2, 0, Card.TYPE.EARTH);
-            case 2 -> new Character("Kakashi", 20, 10, 5, Card.TYPE.FIRE);
-            case 3 -> new Character("RockLee", 15, 15, 2, Card.TYPE.FIRE);
-            case 4 -> new Character("Yamato", 6, 5, 2, Card.TYPE.EARTH);
-            case 5 -> new Character("Hero", 17, 4 , 2, Card.TYPE.FIRE);
+            case 0 -> new Character("Naturo", 100, 5, 3, Card.TYPE.AIR);
+            case 1 -> new Character("Sakae", 100, 2, 0, Card.TYPE.EARTH);
+            case 2 -> new Character("Kakashi", 120, 10, 5, Card.TYPE.FIRE);
+            case 3 -> new Character("RockLee", 95, 15, 2, Card.TYPE.FIRE);
+            case 4 -> new Character("Yamato", 37, 5, 2, Card.TYPE.EARTH);
+            case 5 -> new Character("Hero", 170, 4 , 2, Card.TYPE.FIRE);
             default -> null;
         };
     }
@@ -40,7 +40,7 @@ class Character {
         return health;
     }
 
-    public double getHealthPercent() { return this.maxHealth / this.health; }
+    public double getHealthPercent() { return this.health / this.maxHealth; }
 
     public int getDefense() {
         return defense;
