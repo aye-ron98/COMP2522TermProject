@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
@@ -33,7 +34,10 @@ public class GameController extends Thread{
     private Rectangle playerDef;
     @FXML
     private Rectangle enemyDef;
-
+    @FXML
+    private ImageView playerImage;
+    @FXML
+    private ImageView enemyImage;
     private void pause() {
         try {
             Thread.sleep(500);
@@ -145,6 +149,9 @@ public class GameController extends Thread{
 
         playerName.setText(player.toString());
         enemyName.setText(enemy.toString());
+
+        playerImage.setImage(player.getCharcaterImage());
+        enemyImage.setImage(enemy.getCharcaterImage());
 
         str.setVisible(false);
 

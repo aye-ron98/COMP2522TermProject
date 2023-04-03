@@ -1,5 +1,7 @@
 package com.example.game;
 
+import javafx.scene.image.Image;
+
 import java.util.Random;
 
 class Character {
@@ -8,12 +10,13 @@ class Character {
     private int agility;
     private double defense;
     private double maxHealth;
+    private Image charcaterImage;
 
     private double defultDefense;
     private Card.TYPE type;
     private Card[] cards;
     private static Random rand = new Random();
-    private Character(String n, double h, int a, double d, Card.TYPE t) {
+    private Character(String n, double h, int a, double d, Card.TYPE t, Image i) {
         this.name = n;
         this.health = h;
         this.agility = a;
@@ -22,17 +25,18 @@ class Character {
         this.defultDefense = d;
         this.maxHealth = h;
         this.type = t;
+        this.charcaterImage = i;
     }
 
     public static Character generateEnemyCharacter() {
         int generate = rand.nextInt(0, 6);
         return switch (generate){
-            case 0 -> new Character("Naturo", 100, 5, 3, Card.TYPE.AIR);
-            case 1 -> new Character("Sakae", 100, 2, 0, Card.TYPE.EARTH);
-            case 2 -> new Character("Kakashi", 120, 10, 5, Card.TYPE.FIRE);
-            case 3 -> new Character("RockLee", 95, 15, 2, Card.TYPE.FIRE);
-            case 4 -> new Character("Yamato", 37, 5, 2, Card.TYPE.EARTH);
-            case 5 -> new Character("Hero", 170, 4 , 2, Card.TYPE.FIRE);
+            case 0 -> new Character("Naturo", 100, 5, 3, Card.TYPE.AIR, new Image("C:\\Users\\Admin\\Desktop\\COMP2522TermProject\\bcit\\Game\\src\\main\\resources\\com\\example\\game\\character1.jpg"));
+            case 1 -> new Character("Sakae", 100, 2, 0, Card.TYPE.EARTH, new Image("C:\\Users\\Admin\\Desktop\\COMP2522TermProject\\bcit\\Game\\src\\main\\resources\\com\\example\\game\\character1.jpg"));
+            case 2 -> new Character("Kakashi", 120, 10, 5, Card.TYPE.FIRE, new Image("C:\\Users\\Admin\\Desktop\\COMP2522TermProject\\bcit\\Game\\src\\main\\resources\\com\\example\\game\\character1.jpg"));
+            case 3 -> new Character("RockLee", 95, 15, 2, Card.TYPE.FIRE, new Image("C:\\Users\\Admin\\Desktop\\COMP2522TermProject\\bcit\\Game\\src\\main\\resources\\com\\example\\game\\character1.jpg"));
+            case 4 -> new Character("Yamato", 37, 5, 2, Card.TYPE.EARTH, new Image("C:\\Users\\Admin\\Desktop\\COMP2522TermProject\\bcit\\Game\\src\\main\\resources\\com\\example\\game\\character1.jpg"));
+            case 5 -> new Character("Hero", 170, 4 , 2, Card.TYPE.FIRE, new Image("C:\\Users\\Admin\\Desktop\\COMP2522TermProject\\bcit\\Game\\src\\main\\resources\\com\\example\\game\\character1.jpg"));
             default -> null;
         };
     }
@@ -44,6 +48,10 @@ class Character {
 
     public double getDefense() {
         return defense;
+    }
+
+    public Image getCharcaterImage() {
+        return this.charcaterImage;
     }
 
     public int getAgility() {

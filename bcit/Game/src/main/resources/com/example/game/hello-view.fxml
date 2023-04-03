@@ -3,21 +3,25 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DialogPane?>
 <?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="786.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.game.GameController">
    <children>
+      <ImageView fitHeight="641.0" fitWidth="902.0" layoutX="-102.0" opacity="0.83" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@background.jpg" />
+         </image>
+      </ImageView>
       <Button fx:id="str" layoutX="342.0" layoutY="454.0" mnemonicParsing="false" onAction="#startGame" text="Start" />
       <Rectangle id="PlayerHealth" fx:id="playerHealth" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="34.0" layoutX="14.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" width="253.0" />
       <Text fx:id="playerName" layoutX="14.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player" wrappingWidth="62.13670349121094" />
       <Text fx:id="enemyName" layoutX="519.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enemy" />
       <Rectangle id="EnemyHealth" fx:id="EnemyHealth" arcHeight="5.0" arcWidth="5.0" fill="#ff371f" height="34.0" layoutX="519.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" width="253.0" />
-      <Circle id="PlayerCharacter" fill="DODGERBLUE" layoutX="155.0" layoutY="209.0" radius="60.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle id="EnemyCharacter" fill="#ff3b1f" layoutX="586.0" layoutY="209.0" radius="60.0" stroke="BLACK" strokeType="INSIDE" />
-      <DialogPane id="DialougeBox" fx:id="DialougeText" layoutX="14.0" layoutY="269.0" prefHeight="54.0" prefWidth="301.0" />
+      <DialogPane id="DialougeBox" fx:id="DialougeText" layoutX="14.0" layoutY="269.0" opacity="0.0" prefHeight="54.0" prefWidth="301.0" />
       <Button id="CardOne" fx:id="cardOne" layoutX="129.0" layoutY="362.0" mnemonicParsing="false" onAction="#CardOneOnClick" text="Button">
          <tooltip>
             <Tooltip fx:id="CardOneToolTip" text="Empty Tooltip" />
@@ -39,9 +43,12 @@
          <tooltip>
             <Tooltip fx:id="CardFiveToolTip" text="Empty Tooltip" />
          </tooltip></Button>
-      <DialogPane id="DialougeBox" fx:id="enemyDialouge" layoutX="447.0" layoutY="269.0" prefHeight="54.0" prefWidth="301.0" />
-      <DialogPane id="DialougeBox" fx:id="nextEnemyTurn" layoutX="473.0" layoutY="95.0" prefHeight="54.0" prefWidth="301.0" />
+      <DialogPane id="DialougeBox" fx:id="enemyDialouge" layoutX="447.0" layoutY="269.0" opacity="0.0" prefHeight="54.0" prefWidth="301.0" />
+      <DialogPane id="DialougeBox" fx:id="nextEnemyTurn" layoutX="473.0" layoutY="95.0" opacity="0.0" prefHeight="54.0" prefWidth="301.0" />
       <Rectangle fx:id="playerDef" arcHeight="5.0" arcWidth="5.0" fill="#deff1f" height="17.0" layoutX="14.0" layoutY="57.0" stroke="BLACK" strokeType="INSIDE" width="192.0" />
       <Rectangle fx:id="enemyDef" arcHeight="5.0" arcWidth="5.0" fill="#d4ff1f" height="17.0" layoutX="519.0" layoutY="57.0" stroke="BLACK" strokeType="INSIDE" width="192.0" />
+      <ImageView fx:id="playerImage" fitHeight="150.0" fitWidth="200.0" layoutX="56.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="enemyImage" fitHeight="150.0" fitWidth="200.0" layoutX="501.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true" />
    </children>
+
 </AnchorPane>
