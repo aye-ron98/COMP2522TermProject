@@ -16,6 +16,7 @@ public class GameController extends Thread{
     battle battle = new battle(player, enemy);
     Card move;
 
+    // scense assets
     @FXML
     private DialogPane DialougeText;
     @FXML
@@ -28,6 +29,10 @@ public class GameController extends Thread{
     private Text playerName;
     @FXML
     private Text  enemyName;
+    @FXML
+    private Rectangle playerDef;
+    @FXML
+    private Rectangle enemyDef;
 
     private void pause() {
         try {
@@ -43,9 +48,12 @@ public class GameController extends Thread{
         enemyDialouge.setContentText(String.format("%s has selected %s", enemy.toString(), move.toString()));
 
         battle.perform(enemy, player, move);
+        battle.resetDefense(player);
 
         playerHealth.setWidth(player.getHealthPercent() * playerHealth.getWidth());
         EnemyHealth.setWidth(enemy.getHealthPercent() * EnemyHealth.getWidth());
+        enemyDef.setWidth(enemy.getDefensePercent() * enemyDef.getWidth());
+        playerDef.setWidth(playerDef.getWidth() * player.getDefensePercent());
     }
 
     private void playerTurn(int choice, Button button, Tooltip toolTip) {
@@ -58,10 +66,12 @@ public class GameController extends Thread{
         DialougeText.setContentText(String.format("%s has selected %s", player.toString(), move.toString()));
 
         battle.perform(player, enemy, move);
+        battle.resetDefense(enemy);
 
         playerHealth.setWidth(player.getHealthPercent() * playerHealth.getWidth());
+        playerDef.setWidth(playerDef.getWidth() * player.getDefensePercent());
         EnemyHealth.setWidth(enemy.getHealthPercent() * EnemyHealth.getWidth());
-
+        enemyDef.setWidth(enemy.getDefensePercent() * enemyDef.getWidth());
     }
 
     @FXML

@@ -1,7 +1,6 @@
 package com.example.game;
 
-import java.util.Random;
-import java.util.Scanner;
+import java.io.CharConversionException;
 
 public class battle {
 
@@ -141,11 +140,11 @@ public class battle {
 
         }
 
-    public boolean checkForVictory() {
-        if (this.player.getHealth() < 0) {
+    public boolean checkForVictory(Character player, Character enemy) {
+        if (player.getHealth() < 0) {
             System.out.println("You lost");
             return true;
-        } else if (this.enemy.getHealth() < 0) {
+        } else if (enemy.getHealth() < 0) {
             System.out.println("you win");
             return true;
         }

@@ -6,14 +6,14 @@ class Character {
     private String name;
     private double health;
     private int agility;
-    private int defense;
+    private double defense;
     private double maxHealth;
 
-    private int defultDefense;
+    private double defultDefense;
     private Card.TYPE type;
     private Card[] cards;
     private static Random rand = new Random();
-    private Character(String n, double h, int a, int d, Card.TYPE t) {
+    private Character(String n, double h, int a, double d, Card.TYPE t) {
         this.name = n;
         this.health = h;
         this.agility = a;
@@ -42,7 +42,7 @@ class Character {
 
     public double getHealthPercent() { return this.health / this.maxHealth; }
 
-    public int getDefense() {
+    public double getDefense() {
         return defense;
     }
 
@@ -54,9 +54,11 @@ class Character {
         return type;
     }
 
-    public int getDEFULT_DEFENSE() {
+    public double getDEFULT_DEFENSE() {
         return this.defultDefense;
     }
+
+    public double getDefensePercent() { return this.defense / this.defultDefense; }
 
     public void setAgility(int agility) {
         this.agility = agility;
@@ -66,7 +68,7 @@ class Character {
         this.health = health;
     }
 
-    public void setDefense(int defense) {
+    public void setDefense(double defense) {
         this.defense = defense;
     }
 
@@ -99,8 +101,6 @@ class Character {
 
     @Override
     public String toString() {
-        return "Character{" +
-                "name='" + name + '\'' +
-                '}';
+        return this.name;
     }
 }
