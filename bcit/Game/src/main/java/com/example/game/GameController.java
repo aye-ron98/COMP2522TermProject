@@ -150,8 +150,8 @@ public class GameController extends Thread{
         playerName.setText(player.toString());
         enemyName.setText(enemy.toString());
 
-        playerImage.setImage(player.getCharcaterImage());
-        enemyImage.setImage(enemy.getCharcaterImage());
+        playerImage.setImage(player.getCharacterImage());
+        enemyImage.setImage(enemy.getCharacterImage());
 
         str.setVisible(false);
 

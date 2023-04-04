@@ -10,9 +10,9 @@ class Character {
     private int agility;
     private double defense;
     private double maxHealth;
-    private Image charcaterImage;
+    private Image characterImage;
 
-    private double defultDefense;
+    private double defaultDefense;
     private Card.TYPE type;
     private Card[] cards;
     private static Random rand = new Random();
@@ -22,10 +22,10 @@ class Character {
         this.agility = a;
         this.cards = new Card[5];
         this.defense = d;
-        this.defultDefense = d;
+        this.defaultDefense = d;
         this.maxHealth = h;
         this.type = t;
-        this.charcaterImage = i;
+        this.characterImage = i;
     }
 
     public static Character generateEnemyCharacter() {
@@ -50,8 +50,8 @@ class Character {
         return defense;
     }
 
-    public Image getCharcaterImage() {
-        return this.charcaterImage;
+    public Image getCharacterImage() {
+        return this.characterImage;
     }
 
     public int getAgility() {
@@ -62,11 +62,11 @@ class Character {
         return type;
     }
 
-    public double getDEFULT_DEFENSE() {
-        return this.defultDefense;
+    public double getDEFAULT_DEFENSE() {
+        return this.defaultDefense;
     }
 
-    public double getDefensePercent() { return this.defense / this.defultDefense; }
+    public double getDefensePercent() { return this.defense / this.defaultDefense; }
 
     public void setAgility(int agility) {
         this.agility = agility;
