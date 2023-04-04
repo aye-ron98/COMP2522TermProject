@@ -52,6 +52,7 @@ public class GameController extends Thread{
                     gameOver.setContentText(String.format("%s, wins!", player.toString()));
                 }
             }
+            gameOver.setOpacity(100);
             cardOne.setVisible(false);
             cardTwo.setVisible(false);
             cardThree.setVisible(false);
@@ -59,13 +60,13 @@ public class GameController extends Thread{
             cardFive.setVisible(false);
         }
     }
-    private void pause() {
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-    }
+//    private void pause() {
+//        try {
+//            Thread.sleep(500);
+//        } catch (InterruptedException e) {
+//            Thread.currentThread().interrupt();
+//        }
+//    }
 
     private void enemyTurn() {
         move = battle.enemyTurn();
@@ -75,10 +76,10 @@ public class GameController extends Thread{
         battle.perform(enemy, player, move);
         battle.resetDefense(player);
 
-        playerHealth.setWidth(playerHealth.getWidth() - (playerHealth.getWidth() * (1.0 - player.getHealthPercent())));
-        playerDef.setWidth(playerDef.getWidth() - (playerDef.getWidth() * (1.0 - player.getDefensePercent())));
-        EnemyHealth.setWidth(EnemyHealth.getWidth() - (EnemyHealth.getWidth() * (1.0 - enemy.getHealthPercent())));
-        enemyDef.setWidth(enemyDef.getWidth() - (enemyDef.getWidth() * (1.0 - enemy.getDefensePercent())));
+        playerHealth.setWidth(player.getHealth());
+        playerDef.setWidth(player.getDefense());
+        EnemyHealth.setWidth(enemy.getHealth());
+        enemyDef.setWidth(enemy.getDefense());
 
         gameOver();
     }
@@ -130,7 +131,7 @@ public class GameController extends Thread{
     protected void CardTwoOnClick() {
 
         playerTurn(1, cardTwo, CardTwoToolTip);
-        pause();
+//        pause();
         enemyTurn();
     }
     @FXML
@@ -141,7 +142,7 @@ public class GameController extends Thread{
     protected void CardThreeOnClick() {
 
         playerTurn(2, cardThree, CardThreeToolTip);
-        pause();
+//        pause();
         enemyTurn();
     }
     @FXML
@@ -151,7 +152,7 @@ public class GameController extends Thread{
     @FXML
     protected void CardFourOnClick() {
         playerTurn(3, cardFour, CardFourToolTip);
-        pause();
+//        pause();
         enemyTurn();
 
     }
@@ -162,7 +163,7 @@ public class GameController extends Thread{
     @FXML
     protected void CardFiveOnClick() {
         playerTurn(4, cardFive, CardFiveToolTip);
-        pause();
+//        pause();
         enemyTurn();
 
     }
