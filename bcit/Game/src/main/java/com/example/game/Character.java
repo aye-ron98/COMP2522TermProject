@@ -12,16 +12,16 @@ import java.util.Random;
  * @version 202213
  */
 final class Character {
-    private static Random rand = new Random();
-    private String name;
-    private double health;
+    private static final Random rand = new Random();
+    private final String name;
+    private final double health;
     private int agility;
     private double defense;
-    private double maxHealth;
-    private Image characterImage;
+    private final double maxHealth;
+    private final Image characterImage;
 
-    private double defaultDefense;
-    private Card.TYPE type;
+    private final double defaultDefense;
+    private final Card.TYPE type;
     private Card[] cards;
     private Character(final String n, final double h, final int a, final double d, final Card.TYPE t, final Image i) {
         this.name = n;
