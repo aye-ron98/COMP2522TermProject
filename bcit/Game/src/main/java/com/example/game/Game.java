@@ -6,20 +6,41 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 
+/**
+ * com.example.game.Game.
+ *
+ * @author Aron Zhang
+ * @author Lex Wong
+ * @version 202213
+ */
 public class Game extends Application {
+    /**
+     * Start the game in JavaFX.
+     * @param stage Stage of the scene
+     * @throws IOException When I/O operations are interrupted
+     */
     @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Game.class.getResource("hello-view.fxml"));
+    public void start(final Stage stage) throws IOException {
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(Game.class.getResource("hello-view.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load());
+            Scene scene = new Scene(fxmlLoader.load());
 
-        stage.setTitle("Game");
-        stage.setScene(scene);
+            stage.setTitle("Game");
+            stage.setScene(scene);
 
-        stage.show();
+            stage.show();
+        } catch (IOException e) {
+            throw new IOException();
+        }
+
     }
 
-    public static void main(String[] args) {
+    /**
+     * Drive the program.
+     * @param args Not used
+     */
+    public static void main(final String[] args) {
         launch();
     }
 }
