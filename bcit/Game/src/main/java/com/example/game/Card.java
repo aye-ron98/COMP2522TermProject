@@ -5,18 +5,18 @@ import java.util.Random;
 public final class Card {
     public enum TYPE {
         AIR, WATER, EARTH, FIRE
-    };
+    }
     public enum ACTION {
         ATTACK, DEFEND, HEAL
-    };
+    }
 
     private static final Random rand = new Random();
     private final TYPE type;
     private final ACTION action;
     private final int value;
-    private String name;
+    private final String name;
 
-    private String description;
+    private final String description;
 
     private Card(final TYPE t, final ACTION a, final int d, final String n, final String des) {
         this.type = t;
