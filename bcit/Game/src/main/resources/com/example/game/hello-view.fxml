@@ -49,6 +49,7 @@
       <Rectangle fx:id="enemyDef" arcHeight="5.0" arcWidth="5.0" fill="#d4ff1f" height="17.0" layoutX="519.0" layoutY="57.0" stroke="BLACK" strokeType="INSIDE" width="192.0" />
       <ImageView fx:id="playerImage" fitHeight="150.0" fitWidth="200.0" layoutX="56.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="enemyImage" fitHeight="150.0" fitWidth="200.0" layoutX="501.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true" />
+      <DialogPane fx:id="gameOver" layoutX="76.0" layoutY="120.0" opacity="0.0" prefHeight="285.0" prefWidth="609.0" />
    </children>
 
 </AnchorPane>
