@@ -8,7 +8,26 @@ package com.example.game;
  * @version 202213
  */
 public class Battle {
-
+    /**
+     * Multiplier when Card type and Character type are the same.
+     */
+    static final double SAME_TYPE_MULTIPLIER = 1.0;
+    /**
+     * Multiplier when Character type is Earth.
+     */
+    static final double EARTH_MULTIPLIER = 0.2;
+    /**
+     * Multiplier when Character type is Air.
+     */
+    static final double AIR_MULTIPLIER = 0.8;
+    /**
+     * Multiplier when Card type is strong against Character type.
+     */
+    static final double STRONG_MULTIPLIER = 1.5;
+    /**
+     * Multiplier when Card type is weak against Character type.
+     */
+    static final double WEAK_MULTIPLIER = 0.5;
     private class Stack {
         static final int DEFAULT_SIZE = 10;
         Card[] cards;
@@ -132,37 +151,37 @@ public class Battle {
 
 
         if (type == Card.TYPE.AIR && tempPlayer == Card.TYPE.AIR) {
-            typeMultiplier = 1.0;
+            typeMultiplier = SAME_TYPE_MULTIPLIER;
         } else if (type == Card.TYPE.AIR && tempPlayer == Card.TYPE.EARTH) {
-            typeMultiplier = 0.2;
+            typeMultiplier = EARTH_MULTIPLIER;
         } else if (type == Card.TYPE.AIR && tempPlayer == Card.TYPE.FIRE) {
-            typeMultiplier = 0.8;
+            typeMultiplier = WEAK_MULTIPLIER;
         } else if (type == Card.TYPE.AIR && tempPlayer == Card.TYPE.WATER) {
-            typeMultiplier = 1.5;
+            typeMultiplier = STRONG_MULTIPLIER;
         } else if (type == Card.TYPE.FIRE && tempPlayer == Card.TYPE.AIR) {
-            typeMultiplier = 0.8;
+            typeMultiplier = AIR_MULTIPLIER;
         } else if (type == Card.TYPE.FIRE && tempPlayer == Card.TYPE.EARTH) {
-            typeMultiplier = 0.2;
+            typeMultiplier = EARTH_MULTIPLIER;
         } else if (type == Card.TYPE.FIRE && tempPlayer == Card.TYPE.FIRE) {
-            typeMultiplier = 1.0;
+            typeMultiplier = SAME_TYPE_MULTIPLIER;
         } else if (type == Card.TYPE.FIRE && tempPlayer == Card.TYPE.WATER) {
-            typeMultiplier = 1.5;
+            typeMultiplier = WEAK_MULTIPLIER;
         } else if (type == Card.TYPE.EARTH && tempPlayer == Card.TYPE.AIR) {
-            typeMultiplier = 0.8;
+            typeMultiplier = AIR_MULTIPLIER;
         } else if (type == Card.TYPE.EARTH && tempPlayer == Card.TYPE.EARTH) {
-            typeMultiplier = 0.2;
+            typeMultiplier = EARTH_MULTIPLIER;
         } else if (type == Card.TYPE.EARTH && tempPlayer == Card.TYPE.FIRE) {
-            typeMultiplier = 1.0;
+            typeMultiplier = WEAK_MULTIPLIER;
         } else if (type == Card.TYPE.EARTH && tempPlayer == Card.TYPE.WATER) {
-            typeMultiplier = 1.5;
+            typeMultiplier = STRONG_MULTIPLIER;
         } else if (type == Card.TYPE.WATER && tempPlayer == Card.TYPE.AIR) {
-            typeMultiplier = 0.8;
+            typeMultiplier = AIR_MULTIPLIER;
         } else if (type == Card.TYPE.WATER && tempPlayer == Card.TYPE.EARTH) {
-            typeMultiplier = 0.2;
+            typeMultiplier = EARTH_MULTIPLIER;
         } else if (type == Card.TYPE.WATER && tempPlayer == Card.TYPE.FIRE) {
-            typeMultiplier = 1.0;
+            typeMultiplier = STRONG_MULTIPLIER;
         } else if (type == Card.TYPE.WATER && tempPlayer == Card.TYPE.WATER) {
-            typeMultiplier = 1.5;
+            typeMultiplier = SAME_TYPE_MULTIPLIER;
         } else {
             typeMultiplier = 0;
         }
