@@ -86,7 +86,7 @@ public class Battle {
      * @param c Character the player is playing as
      */
     public void resetDefense(final Character c) {
-        c.setDefense(c.getDEFULT_DEFENSE());
+        c.setDefense(c.getDEFAULT_DEFENSE());
     }
 
     public void perform(final Character current, final Character next, final Card c) {
