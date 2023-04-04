@@ -1,10 +1,37 @@
 package com.example.game;
 
+/**
+ * com.example.game.Battle.
+ *
+ * @author Aron Zhang
+ * @author Lex Wong
+ * @version 202213
+ */
 public class Battle {
-
+    /**
+     * Multiplier when Card type and Character type are the same.
+     */
+    static final double SAME_TYPE_MULTIPLIER = 1.0;
+    /**
+     * Multiplier when Character type is Earth.
+     */
+    static final double EARTH_MULTIPLIER = 0.2;
+    /**
+     * Multiplier when Character type is Air.
+     */
+    static final double AIR_MULTIPLIER = 0.8;
+    /**
+     * Multiplier when Card type is strong against Character type.
+     */
+    static final double STRONG_MULTIPLIER = 1.5;
+    /**
+     * Multiplier when Card type is weak against Character type.
+     */
+    static final double WEAK_MULTIPLIER = 0.5;
     private class Stack {
+        static final int DEFAULT_SIZE = 10;
         Card[] cards;
-        int size = 10;
+        int size = DEFAULT_SIZE;
         Stack() {
             this.cards = new Card[size];
 
@@ -31,7 +58,7 @@ public class Battle {
 
         void checkStack() {
             if (this.size - 1 < 0) {
-                this.size = 10;
+                this.size = DEFAULT_SIZE;
 
                 for (int i = 0; i < this.size; i++) {
                     cards[i] = Card.constructNewCard();
@@ -41,9 +68,18 @@ public class Battle {
         }
     }
 
+    /**
+     * Character that the player is currently playing as.
+     */
     Character player;
+    /**
+     * Character of the enemy.
+     */
     Character enemy;
 
+    /**
+     * Stack of turns of both the player and the enemy.
+     */
     Stack stack;
     Battle(final Character p, final Character e) {
         this.player = p;
@@ -89,6 +125,12 @@ public class Battle {
         c.setDefense(c.getDEFAULT_DEFENSE());
     }
 
+    /**
+     * Perform the action done from one Character to the other.
+     * @param current Character dealing the action
+     * @param next Character receiving the action
+     * @param c Card chosen as the action
+     */
     public void perform(final Character current, final Character next, final Card c) {
 
         Card.ACTION action = c.getAction();
@@ -109,37 +151,37 @@ public class Battle {
 
 
         if (type == Card.TYPE.AIR && tempPlayer == Card.TYPE.AIR) {
-            typeMultiplier = 1.0;
+            typeMultiplier = SAME_TYPE_MULTIPLIER;
         } else if (type == Card.TYPE.AIR && tempPlayer == Card.TYPE.EARTH) {
-            typeMultiplier = 0.2;
+            typeMultiplier = EARTH_MULTIPLIER;
         } else if (type == Card.TYPE.AIR && tempPlayer == Card.TYPE.FIRE) {
-            typeMultiplier = 0.8;
+            typeMultiplier = WEAK_MULTIPLIER;
         } else if (type == Card.TYPE.AIR && tempPlayer == Card.TYPE.WATER) {
-            typeMultiplier = 1.5;
+            typeMultiplier = STRONG_MULTIPLIER;
         } else if (type == Card.TYPE.FIRE && tempPlayer == Card.TYPE.AIR) {
-            typeMultiplier = 0.8;
+            typeMultiplier = AIR_MULTIPLIER;
         } else if (type == Card.TYPE.FIRE && tempPlayer == Card.TYPE.EARTH) {
-            typeMultiplier = 0.2;
+            typeMultiplier = EARTH_MULTIPLIER;
         } else if (type == Card.TYPE.FIRE && tempPlayer == Card.TYPE.FIRE) {
-            typeMultiplier = 1.0;
+            typeMultiplier = SAME_TYPE_MULTIPLIER;
         } else if (type == Card.TYPE.FIRE && tempPlayer == Card.TYPE.WATER) {
-            typeMultiplier = 1.5;
+            typeMultiplier = WEAK_MULTIPLIER;
         } else if (type == Card.TYPE.EARTH && tempPlayer == Card.TYPE.AIR) {
-            typeMultiplier = 0.8;
+            typeMultiplier = AIR_MULTIPLIER;
         } else if (type == Card.TYPE.EARTH && tempPlayer == Card.TYPE.EARTH) {
-            typeMultiplier = 0.2;
+            typeMultiplier = EARTH_MULTIPLIER;
         } else if (type == Card.TYPE.EARTH && tempPlayer == Card.TYPE.FIRE) {
-            typeMultiplier = 1.0;
+            typeMultiplier = WEAK_MULTIPLIER;
         } else if (type == Card.TYPE.EARTH && tempPlayer == Card.TYPE.WATER) {
-            typeMultiplier = 1.5;
+            typeMultiplier = STRONG_MULTIPLIER;
         } else if (type == Card.TYPE.WATER && tempPlayer == Card.TYPE.AIR) {
-            typeMultiplier = 0.8;
+            typeMultiplier = AIR_MULTIPLIER;
         } else if (type == Card.TYPE.WATER && tempPlayer == Card.TYPE.EARTH) {
-            typeMultiplier = 0.2;
+            typeMultiplier = EARTH_MULTIPLIER;
         } else if (type == Card.TYPE.WATER && tempPlayer == Card.TYPE.FIRE) {
-            typeMultiplier = 1.0;
+            typeMultiplier = STRONG_MULTIPLIER;
         } else if (type == Card.TYPE.WATER && tempPlayer == Card.TYPE.WATER) {
-            typeMultiplier = 1.5;
+            typeMultiplier = SAME_TYPE_MULTIPLIER;
         } else {
             typeMultiplier = 0;
         }
@@ -156,13 +198,19 @@ public class Battle {
             current.setHealth((int) ((current.getHealth() + c.getValue()) * typeMultiplier));
         }
 
-        }
+    }
 
-    public boolean checkForVictory(final Character player, final Character enemy) {
-        if (player.getHealth() < 0) {
+    /**
+     * Check if the player has won the fight.
+     * @param playerCharacter Character that the player is currently playing as
+     * @param enemyCharacter Character of the enemy
+     * @return boolean stating if the player has beaten the enemy
+     */
+    public boolean checkForVictory(final Character playerCharacter, final Character enemyCharacter) {
+        if (playerCharacter.getHealth() < 0) {
             System.out.println("You lost");
             return true;
-        } else if (enemy.getHealth() < 0) {
+        } else if (enemyCharacter.getHealth() < 0) {
             System.out.println("you win");
             return true;
         }
