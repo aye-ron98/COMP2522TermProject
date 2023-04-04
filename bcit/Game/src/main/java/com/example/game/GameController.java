@@ -14,7 +14,7 @@ public class GameController extends Thread{
     Character player = Character.generateEnemyCharacter();
     Character enemy = Character.generateEnemyCharacter();
 
-    battle battle = new battle(player, enemy);
+    Battle battle = new Battle(player, enemy);
     Card move;
 
     // scense assets

@@ -1,8 +1,6 @@
 package com.example.game;
 
-import java.io.CharConversionException;
-
-public class battle {
+public class Battle {
 
     private class Stack {
         Card[] cards;
@@ -47,7 +45,7 @@ public class battle {
     Character enemy;
 
     Stack stack;
-    battle(final Character p, final Character e) {
+    Battle(final Character p, final Character e) {
         this.player = p;
         this.enemy = e;
 
@@ -64,19 +62,29 @@ public class battle {
     }
 
     /**
-     *
-     * @return Card that enemy will play in the next turn.
+     * Peek at what enemy will do in the next turn.
+     * @return Card that enemy will play in the next turn
      */
     Card nextEnemyTurn() {
         return this.stack.peek();
     }
 
+    /**
+     * Select card to play by the user.
+     * @param c Character the player is playing as
+     * @param choice int of the Card that the player has selected
+     * @return Card that player has selected
+     */
     public Card select(final Character c, final int choice) {
         Card returnCard = c.returnCard(choice);
         System.out.printf("You have selected %s!\n", returnCard.toString());
         return returnCard;
     }
 
+    /**
+     * Reset the Character's Defense stats to the default Defense stats.
+     * @param c Character the player is playing as
+     */
     public void resetDefense(final Character c) {
         c.setDefense(c.getDEFULT_DEFENSE());
     }
