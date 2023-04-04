@@ -47,7 +47,7 @@ public class battle {
     Character enemy;
 
     Stack stack;
-    battle(Character p, Character e) {
+    battle(final Character p, final Character e) {
         this.player = p;
         this.enemy = e;
 
@@ -55,23 +55,33 @@ public class battle {
         this.stack = new Stack();
     }
 
+    /**
+     * Proceed with the enemy's turn.
+     * @return Card that enemy plays
+     */
     Card enemyTurn() {
         return this.stack.pop();
     }
 
-    Card nextEnemyTurn() { return this.stack.peek(); }
+    /**
+     *
+     * @return Card that enemy will play in the next turn.
+     */
+    Card nextEnemyTurn() {
+        return this.stack.peek();
+    }
 
-    public Card select(Character c, int choice) {
+    public Card select(final Character c, final int choice) {
         Card returnCard = c.returnCard(choice);
         System.out.printf("You have selected %s!\n", returnCard.toString());
         return returnCard;
     }
 
-    public void resetDefense(Character c) {
+    public void resetDefense(final Character c) {
         c.setDefense(c.getDEFULT_DEFENSE());
     }
 
-    public void perform(Character current, Character next, Card c) {
+    public void perform(final Character current, final Character next, final Card c) {
 
         Card.ACTION action = c.getAction();
         Card.TYPE type = c.getType();
@@ -140,7 +150,7 @@ public class battle {
 
         }
 
-    public boolean checkForVictory(Character player, Character enemy) {
+    public boolean checkForVictory(final Character player, final Character enemy) {
         if (player.getHealth() < 0) {
             System.out.println("You lost");
             return true;
