@@ -1,5 +1,5 @@
 package com.example.game;
-
+import com.example.game.Character;
 
 /**
  * com.example.game.Battle.
