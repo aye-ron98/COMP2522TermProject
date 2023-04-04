@@ -2,11 +2,15 @@ package com.example.game;
 
 import java.util.Random;
 
-public class Card {
-    public static enum TYPE {AIR, WATER, EARTH, FIRE};
-    public static enum ACTION {ATTACK, DEFEND, HEAL};
+public final class Card {
+    public enum TYPE {
+        AIR, WATER, EARTH, FIRE
+    };
+    public enum ACTION {
+        ATTACK, DEFEND, HEAL
+    };
 
-    static private final Random rand = new Random();
+    private static final Random rand = new Random();
     private final TYPE type;
     private final ACTION action;
     private final int value;
@@ -14,7 +18,7 @@ public class Card {
 
     private String description;
 
-    private Card(TYPE t, ACTION a, int d, String n, String des) {
+    private Card(final TYPE t, final ACTION a, final int d, final String n, final String des) {
         this.type = t;
         this.action = a;
         this.value = d;
