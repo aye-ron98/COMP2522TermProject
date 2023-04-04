@@ -1,10 +1,18 @@
 package com.example.game;
 
+/**
+ * com.example.game.Battle.
+ *
+ * @author Aron Zhang
+ * @author Lex Wong
+ * @version 202213
+ */
 public class Battle {
 
     private class Stack {
+        static final int DEFAULT_SIZE = 10;
         Card[] cards;
-        int size = 10;
+        int size = DEFAULT_SIZE;
         Stack() {
             this.cards = new Card[size];
 
@@ -31,7 +39,7 @@ public class Battle {
 
         void checkStack() {
             if (this.size - 1 < 0) {
-                this.size = 10;
+                this.size = DEFAULT_SIZE;
 
                 for (int i = 0; i < this.size; i++) {
                     cards[i] = Card.constructNewCard();
@@ -41,9 +49,18 @@ public class Battle {
         }
     }
 
+    /**
+     * Character that the player is currently playing as.
+     */
     Character player;
+    /**
+     * Character of the enemy.
+     */
     Character enemy;
 
+    /**
+     * Stack of turns of both the player and the enemy.
+     */
     Stack stack;
     Battle(final Character p, final Character e) {
         this.player = p;
@@ -89,6 +106,12 @@ public class Battle {
         c.setDefense(c.getDEFAULT_DEFENSE());
     }
 
+    /**
+     * Perform the action done from one Character to the other.
+     * @param current Character dealing the action
+     * @param next Character receiving the action
+     * @param c Card chosen as the action
+     */
     public void perform(final Character current, final Character next, final Card c) {
 
         Card.ACTION action = c.getAction();
@@ -156,8 +179,14 @@ public class Battle {
             current.setHealth((int) ((current.getHealth() + c.getValue()) * typeMultiplier));
         }
 
-        }
+    }
 
+    /**
+     * Check if the player has won the fight.
+     * @param player Character that the player is currently playing as
+     * @param enemy Character of the enemy
+     * @return boolean stating if the player has beaten the enemy
+     */
     public boolean checkForVictory(final Character player, final Character enemy) {
         if (player.getHealth() < 0) {
             System.out.println("You lost");
