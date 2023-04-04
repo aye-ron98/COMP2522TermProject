@@ -1,5 +1,4 @@
 package com.example.game;
-import com.example.game.Character;
 
 /**
  * com.example.game.Battle.
@@ -123,7 +122,7 @@ public class Battle {
      * @param c Character the player is playing as
      */
     public void resetDefense(final Character c) {
-        c.setDefense(c.getDEFAULT_DEFENSE());
+        c.setDefense(c.getDEFAULTDEFENSE());
     }
 
     /**
