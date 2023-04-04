@@ -38,13 +38,35 @@ public class GameController extends Thread{
     private ImageView playerImage;
     @FXML
     private ImageView enemyImage;
-    private void pause() {
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+    @FXML
+    private DialogPane gameOver;
+
+    private void gameOver() {
+        if (battle.checkForVictory(player, enemy)) {
+            if (player.getHealth() < 0) {
+                gameOver.setHeaderText("Game Over!");
+                gameOver.setContentText(String.format("%s, wins!", enemy.toString()));
+            } else {
+                if (enemy.getHealth() < 0) {
+                    gameOver.setHeaderText("Game Over!");
+                    gameOver.setContentText(String.format("%s, wins!", player.toString()));
+                }
+            }
+            gameOver.setOpacity(100);
+            cardOne.setVisible(false);
+            cardTwo.setVisible(false);
+            cardThree.setVisible(false);
+            cardFour.setVisible(false);
+            cardFive.setVisible(false);
         }
     }
+//    private void pause() {
+//        try {
+//            Thread.sleep(500);
+//        } catch (InterruptedException e) {
+//            Thread.currentThread().interrupt();
+//        }
+//    }
 
     private void enemyTurn() {
         move = battle.enemyTurn();
@@ -54,10 +76,12 @@ public class GameController extends Thread{
         battle.perform(enemy, player, move);
         battle.resetDefense(player);
 
-        playerHealth.setWidth(player.getHealthPercent() * playerHealth.getWidth());
-        EnemyHealth.setWidth(enemy.getHealthPercent() * EnemyHealth.getWidth());
-        enemyDef.setWidth(enemy.getDefensePercent() * enemyDef.getWidth());
-        playerDef.setWidth(playerDef.getWidth() * player.getDefensePercent());
+        playerHealth.setWidth(player.getHealth());
+        playerDef.setWidth(player.getDefense());
+        EnemyHealth.setWidth(enemy.getHealth());
+        enemyDef.setWidth(enemy.getDefense());
+
+        gameOver();
     }
 
     private void playerTurn(int choice, Button button, Tooltip toolTip) {
@@ -72,10 +96,15 @@ public class GameController extends Thread{
         battle.perform(player, enemy, move);
         battle.resetDefense(enemy);
 
-        playerHealth.setWidth(player.getHealthPercent() * playerHealth.getWidth());
-        playerDef.setWidth(playerDef.getWidth() * player.getDefensePercent());
-        EnemyHealth.setWidth(enemy.getHealthPercent() * EnemyHealth.getWidth());
-        enemyDef.setWidth(enemy.getDefensePercent() * enemyDef.getWidth());
+        playerHealth.setWidth(playerHealth.getWidth() - (playerHealth.getWidth() * (1.0 - player.getHealthPercent())));
+        playerDef.setWidth(playerDef.getWidth() - (playerDef.getWidth() * (1.0 - player.getDefensePercent())));
+        EnemyHealth.setWidth(EnemyHealth.getWidth() - (EnemyHealth.getWidth() * (1.0 - enemy.getHealthPercent())));
+        enemyDef.setWidth(enemyDef.getWidth() - (enemyDef.getWidth() * (1.0 - enemy.getDefensePercent())));
+
+        System.out.println(player.getHealth());
+        System.out.println(enemy.getHealth());
+
+        gameOver();
     }
 
     @FXML
@@ -90,7 +119,7 @@ public class GameController extends Thread{
     @FXML
     protected void CardOneOnClick() {
         playerTurn(0, cardOne, CardOneToolTip);
-        pause();
+//        pause();
         enemyTurn();
     }
 
@@ -102,7 +131,7 @@ public class GameController extends Thread{
     protected void CardTwoOnClick() {
 
         playerTurn(1, cardTwo, CardTwoToolTip);
-        pause();
+//        pause();
         enemyTurn();
     }
     @FXML
@@ -113,7 +142,7 @@ public class GameController extends Thread{
     protected void CardThreeOnClick() {
 
         playerTurn(2, cardThree, CardThreeToolTip);
-        pause();
+//        pause();
         enemyTurn();
     }
     @FXML
@@ -123,7 +152,7 @@ public class GameController extends Thread{
     @FXML
     protected void CardFourOnClick() {
         playerTurn(3, cardFour, CardFourToolTip);
-        pause();
+//        pause();
         enemyTurn();
 
     }
@@ -134,7 +163,7 @@ public class GameController extends Thread{
     @FXML
     protected void CardFiveOnClick() {
         playerTurn(4, cardFive, CardFiveToolTip);
-        pause();
+//        pause();
         enemyTurn();
 
     }

@@ -21,7 +21,6 @@
       <Text fx:id="playerName" layoutX="14.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player" wrappingWidth="62.13670349121094" />
       <Text fx:id="enemyName" layoutX="519.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enemy" />
       <Rectangle id="EnemyHealth" fx:id="EnemyHealth" arcHeight="5.0" arcWidth="5.0" fill="#ff371f" height="34.0" layoutX="519.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" width="253.0" />
-      <DialogPane id="DialougeBox" fx:id="DialougeText" layoutX="14.0" layoutY="269.0" opacity="0.0" prefHeight="54.0" prefWidth="301.0" />
       <Button id="CardOne" fx:id="cardOne" layoutX="129.0" layoutY="362.0" mnemonicParsing="false" onAction="#CardOneOnClick" text="Button">
          <tooltip>
             <Tooltip fx:id="CardOneToolTip" text="Empty Tooltip" />
@@ -43,12 +42,14 @@
          <tooltip>
             <Tooltip fx:id="CardFiveToolTip" text="Empty Tooltip" />
          </tooltip></Button>
-      <DialogPane id="DialougeBox" fx:id="enemyDialouge" layoutX="447.0" layoutY="269.0" opacity="0.0" prefHeight="54.0" prefWidth="301.0" />
-      <DialogPane id="DialougeBox" fx:id="nextEnemyTurn" layoutX="473.0" layoutY="95.0" opacity="0.0" prefHeight="54.0" prefWidth="301.0" />
       <Rectangle fx:id="playerDef" arcHeight="5.0" arcWidth="5.0" fill="#deff1f" height="17.0" layoutX="14.0" layoutY="57.0" stroke="BLACK" strokeType="INSIDE" width="192.0" />
       <Rectangle fx:id="enemyDef" arcHeight="5.0" arcWidth="5.0" fill="#d4ff1f" height="17.0" layoutX="519.0" layoutY="57.0" stroke="BLACK" strokeType="INSIDE" width="192.0" />
       <ImageView fx:id="playerImage" fitHeight="150.0" fitWidth="200.0" layoutX="56.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="enemyImage" fitHeight="150.0" fitWidth="200.0" layoutX="501.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true" />
+      <DialogPane id="DialougeBox" fx:id="DialougeText" layoutX="5.0" layoutY="298.0" opacity="0.35" prefHeight="54.0" prefWidth="301.0" />
+      <DialogPane id="DialougeBox" fx:id="enemyDialouge" layoutX="450.0" layoutY="298.0" opacity="0.34" prefHeight="54.0" prefWidth="301.0" />
+      <DialogPane id="DialougeBox" fx:id="nextEnemyTurn" layoutX="473.0" layoutY="95.0" opacity="0.35" prefHeight="34.0" prefWidth="302.0" />
+      <DialogPane fx:id="gameOver" layoutX="76.0" layoutY="120.0" opacity="0.0" prefHeight="285.0" prefWidth="609.0" />
    </children>
 
 </AnchorPane>

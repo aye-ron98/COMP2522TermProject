@@ -10,7 +10,7 @@
       <list>
         <ConfigurationLocation id="bundled-sun-checks" type="BUNDLED" scope="All" description="Sun Checks">(bundled)</ConfigurationLocation>
         <ConfigurationLocation id="bundled-google-checks" type="BUNDLED" scope="All" description="Google Checks">(bundled)</ConfigurationLocation>
-        <ConfigurationLocation id="625ab86e-d096-4227-8c1c-fa37b2154c99" type="LOCAL_FILE" scope="All" description="COMP2522">$USER_HOME$/Desktop/COMP2522/javafiles/COMP-2522-Checkstyle.xml</ConfigurationLocation>
+        <ConfigurationLocation id="625ab86e-d096-4227-8c1c-fa37b2154c99" type="LOCAL_FILE" scope="All" description="COMP2522">$PROJECT_DIR$/../../../COMP2522/javafiles/COMP-2522-Checkstyle.xml</ConfigurationLocation>
       </list>
     </option>
   </component>
