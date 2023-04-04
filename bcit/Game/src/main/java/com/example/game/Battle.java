@@ -1,5 +1,6 @@
 package com.example.game;
 
+
 /**
  * com.example.game.Battle.
  *
@@ -28,7 +29,7 @@ public class Battle {
      * Multiplier when Card type is weak against Character type.
      */
     static final double WEAK_MULTIPLIER = 0.5;
-    private class Stack {
+    private static class Stack {
         static final int DEFAULT_SIZE = 10;
         Card[] cards;
         int size = DEFAULT_SIZE;
@@ -137,9 +138,8 @@ public class Battle {
         Card.TYPE type = c.getType();
         Card.TYPE tempPlayer;
 
-        Character nextPlayer = next;
         Card.TYPE currentPlayerType = current.getType();
-        Card.TYPE nextPlayerType = nextPlayer.getType();
+        Card.TYPE nextPlayerType = next.getType();
 
         if (action == Card.ACTION.ATTACK) {
             tempPlayer = nextPlayerType;
@@ -188,9 +188,9 @@ public class Battle {
 
 
         if (action == Card.ACTION.ATTACK) {
-            int damageDealt = (int) ((c.getValue() - nextPlayer.getDefense()) * typeMultiplier);
+            int damageDealt = (int) ((c.getValue() - next.getDefense()) * typeMultiplier);
             if (damageDealt > 0) {
-                nextPlayer.setHealth(nextPlayer.getHealth() - c.getValue());
+                next.setHealth(next.getHealth() - c.getValue());
             }
         } else if (action == Card.ACTION.DEFEND) {
             current.setDefense((int) ((current.getDefense() + c.getValue()) * typeMultiplier));
