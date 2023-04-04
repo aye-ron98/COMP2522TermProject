@@ -2,10 +2,24 @@ package com.example.game;
 
 import java.util.Random;
 
+/**
+ * com.example.game.Card.
+ *
+ * @author Aron Zhang
+ * @author Lex Wong
+ * @version 202213
+ */
 public final class Card {
+    /**
+     * Elemental type of Cards.
+     */
     public enum TYPE {
         AIR, WATER, EARTH, FIRE
     }
+
+    /**
+     * Possible Card actions.
+     */
     public enum ACTION {
         ATTACK, DEFEND, HEAL
     }
@@ -26,6 +40,11 @@ public final class Card {
         this.description = des;
     }
 
+    /**
+     * Generate new cards.
+     * @return Card that was generated
+     */
+    //todo: add more cards & change magic numbers
     public static Card constructNewCard() {
         int generate = rand.nextInt(0, 6);
         return switch (generate) {
@@ -38,22 +57,43 @@ public final class Card {
             default -> null;
         };
     }
+
+    /**
+     * Get Type of Card.
+     * @return Type of Card
+     */
     public TYPE getType() {
         return type;
     }
 
+    /**
+     * Get Action of Card.
+     * @return Action of Card
+     */
     public ACTION getAction() {
         return action;
     }
 
+    /**
+     * Get value of Card.
+     * @return int value of Card
+     */
     public int getValue() {
         return value;
     }
 
+    /**
+     * Get the description of the Card.
+     * @return String description of the Card
+     */
     public String getDescription() {
         return this.description;
     }
 
+    /**
+     * Convert the name of the Card to a String.
+     * @return String name of the Card
+     */
     @Override
     public String toString() {
         return name;
