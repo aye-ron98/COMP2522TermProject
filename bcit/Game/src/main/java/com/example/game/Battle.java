@@ -202,15 +202,15 @@ public class Battle {
 
     /**
      * Check if the player has won the fight.
-     * @param player Character that the player is currently playing as
-     * @param enemy Character of the enemy
+     * @param playerCharacter Character that the player is currently playing as
+     * @param enemyCharacter Character of the enemy
      * @return boolean stating if the player has beaten the enemy
      */
-    public boolean checkForVictory(final Character player, final Character enemy) {
-        if (player.getHealth() < 0) {
+    public boolean checkForVictory(final Character playerCharacter, final Character enemyCharacter) {
+        if (playerCharacter.getHealth() < 0) {
             System.out.println("You lost");
             return true;
-        } else if (enemy.getHealth() < 0) {
+        } else if (enemyCharacter.getHealth() < 0) {
             System.out.println("you win");
             return true;
         }
