@@ -8,20 +8,36 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
-
-public class GameController extends Thread{
-
+/**
+ * com.example.game.GameController.
+ *
+ * @author Aron Zhang
+ * @author Lex Wong
+ * @version 202213
+ */
+public class GameController extends Thread {
+    /**
+     * Assign player to a generated Character.
+     */
     Character player = Character.generateEnemyCharacter();
+    /**
+     * Assign enemy to a generated Character.
+     */
     Character enemy = Character.generateEnemyCharacter();
-
+    /**
+     * Assign battle to a new Battle between the player character and the enemy character.
+     */
     Battle battle = new Battle(player, enemy);
+    /**
+     * Create new variable for Cards.
+     */
     Card move;
 
     // scense assets
     @FXML
-    private DialogPane DialougeText;
+    private DialogPane dialogText;
     @FXML
-    private DialogPane enemyDialouge;
+    private DialogPane enemyDialog;
     @FXML
     private DialogPane nextEnemyTurn;
     @FXML
@@ -40,6 +56,30 @@ public class GameController extends Thread{
     private ImageView enemyImage;
     @FXML
     private DialogPane gameOver;
+    @FXML
+    private Rectangle enemyHealth;
+    @FXML
+    private Rectangle playerHealth;
+    @FXML
+    private Button cardOne;
+    @FXML
+    private Tooltip cardOneToolTip;
+    @FXML
+    private Button cardTwo;
+    @FXML
+    private Tooltip cardTwoToolTip;
+    @FXML
+    private Button cardThree;
+    @FXML
+    private Tooltip cardThreeToolTip;
+    @FXML
+    private Button cardFour;
+    @FXML
+    private Tooltip cardFourToolTip;
+    @FXML
+    private Button cardFive;
+    @FXML
+    private Tooltip cardFiveToolTip;
 
     private void gameOver() {
         if (battle.checkForVictory(player, enemy)) {
@@ -71,34 +111,35 @@ public class GameController extends Thread{
     private void enemyTurn() {
         move = battle.enemyTurn();
 
-        enemyDialouge.setContentText(String.format("%s has selected %s", enemy.toString(), move.toString()));
+        enemyDialog.setContentText(String.format("%s has selected %s", enemy.toString(), move.toString()));
 
         battle.perform(enemy, player, move);
         battle.resetDefense(player);
 
         playerHealth.setWidth(player.getHealth());
         playerDef.setWidth(player.getDefense());
-        EnemyHealth.setWidth(enemy.getHealth());
+        enemyHealth.setWidth(enemy.getHealth());
         enemyDef.setWidth(enemy.getDefense());
 
         gameOver();
     }
 
-    private void playerTurn(int choice, Button button, Tooltip toolTip) {
-        nextEnemyTurn.setContentText(String.format("%s will use %s next!", enemy.toString(), battle.nextEnemyTurn().toString()));
+    private void playerTurn(final int choice, final Button button, final Tooltip toolTip) {
+        nextEnemyTurn.setContentText(String.format("%s will use %s next!", enemy.toString(),
+                battle.nextEnemyTurn().toString()));
 
         move = battle.select(player, choice);
         button.setText(player.getCardName(choice));
         toolTip.setText(move.getDescription());
 
-        DialougeText.setContentText(String.format("%s has selected %s", player.toString(), move.toString()));
+        dialogText.setContentText(String.format("%s has selected %s", player.toString(), move.toString()));
 
         battle.perform(player, enemy, move);
         battle.resetDefense(enemy);
 
         playerHealth.setWidth(playerHealth.getWidth() - (playerHealth.getWidth() * (1.0 - player.getHealthPercent())));
         playerDef.setWidth(playerDef.getWidth() - (playerDef.getWidth() * (1.0 - player.getDefensePercent())));
-        EnemyHealth.setWidth(EnemyHealth.getWidth() - (EnemyHealth.getWidth() * (1.0 - enemy.getHealthPercent())));
+        enemyHealth.setWidth(enemyHealth.getWidth() - (enemyHealth.getWidth() * (1.0 - enemy.getHealthPercent())));
         enemyDef.setWidth(enemyDef.getWidth() - (enemyDef.getWidth() * (1.0 - enemy.getDefensePercent())));
 
         System.out.println(player.getHealth());
@@ -107,67 +148,56 @@ public class GameController extends Thread{
         gameOver();
     }
 
+    /**
+     * The player chooses to play the first displayed card.
+     */
     @FXML
-    private Rectangle EnemyHealth;
-    @FXML
-    private Rectangle playerHealth;
-
-    @FXML
-    private Button cardOne;
-    @FXML
-    private Tooltip CardOneToolTip;
-    @FXML
-    protected void CardOneOnClick() {
-        playerTurn(0, cardOne, CardOneToolTip);
+    protected void cardOneOnClick() {
+        playerTurn(0, cardOne, cardOneToolTip);
 //        pause();
         enemyTurn();
     }
 
+    /**
+     * The player chooses to play the second displayed card.
+     */
     @FXML
-    private Button cardTwo;
-    @FXML
-    private Tooltip CardTwoToolTip;
-    @FXML
-    protected void CardTwoOnClick() {
-
-        playerTurn(1, cardTwo, CardTwoToolTip);
+    protected void cardTwoOnClick() {
+        playerTurn(1, cardTwo, cardTwoToolTip);
 //        pause();
         enemyTurn();
     }
+    /**
+     * The player chooses to play the third displayed card.
+     */
     @FXML
-    private Button cardThree;
-    @FXML
-    private Tooltip CardThreeToolTip;
-    @FXML
-    protected void CardThreeOnClick() {
-
-        playerTurn(2, cardThree, CardThreeToolTip);
+    protected void cardThreeOnClick() {
+        playerTurn(2, cardThree, cardThreeToolTip);
 //        pause();
         enemyTurn();
     }
+    /**
+     * The player chooses to play the fourth displayed card.
+     */
     @FXML
-    private Button cardFour;
-    @FXML
-    private Tooltip CardFourToolTip;
-    @FXML
-    protected void CardFourOnClick() {
-        playerTurn(3, cardFour, CardFourToolTip);
+    protected void cardFourOnClick() {
+        playerTurn(3, cardFour, cardFourToolTip);
 //        pause();
         enemyTurn();
-
     }
+    /**
+     * The player chooses to play the fifth displayed card.
+     */
     @FXML
-    private Button cardFive;
-    @FXML
-    private Tooltip CardFiveToolTip;
-    @FXML
-    protected void CardFiveOnClick() {
-        playerTurn(4, cardFive, CardFiveToolTip);
+    protected void cardFiveOnClick() {
+        playerTurn(4, cardFive, cardFiveToolTip);
 //        pause();
         enemyTurn();
-
     }
 
+    /**
+     * Start the game.
+     */
     @FXML
     protected void startGame() {
         cardOne.setText(player.getCardName(0));
@@ -184,7 +214,8 @@ public class GameController extends Thread{
 
         str.setVisible(false);
 
-        nextEnemyTurn.setContentText(String.format("%s will use %s next!", enemy.toString(), battle.nextEnemyTurn().toString()));
+        nextEnemyTurn.setContentText(String.format("%s will use %s next!", enemy.toString(),
+                battle.nextEnemyTurn().toString()));
     }
 
 }
