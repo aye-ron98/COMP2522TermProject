@@ -32,11 +32,11 @@ class Character {
         int generate = rand.nextInt(0, 6);
         return switch (generate){
             case 0 -> new Character("Naturo", 100, 5, 3, Card.TYPE.AIR, new Image("C:\\Users\\Admin\\Desktop\\COMP2522TermProject\\bcit\\Game\\src\\main\\resources\\com\\example\\game\\character1.jpg"));
-            case 1 -> new Character("Sakae", 100, 2, 0, Card.TYPE.EARTH, new Image("C:\\Users\\Admin\\Desktop\\COMP2522TermProject\\bcit\\Game\\src\\main\\resources\\com\\example\\game\\character1.jpg"));
-            case 2 -> new Character("Kakashi", 120, 10, 5, Card.TYPE.FIRE, new Image("C:\\Users\\Admin\\Desktop\\COMP2522TermProject\\bcit\\Game\\src\\main\\resources\\com\\example\\game\\character1.jpg"));
-            case 3 -> new Character("RockLee", 95, 15, 2, Card.TYPE.FIRE, new Image("C:\\Users\\Admin\\Desktop\\COMP2522TermProject\\bcit\\Game\\src\\main\\resources\\com\\example\\game\\character1.jpg"));
-            case 4 -> new Character("Yamato", 37, 5, 2, Card.TYPE.EARTH, new Image("C:\\Users\\Admin\\Desktop\\COMP2522TermProject\\bcit\\Game\\src\\main\\resources\\com\\example\\game\\character1.jpg"));
-            case 5 -> new Character("Hero", 170, 4 , 2, Card.TYPE.FIRE, new Image("C:\\Users\\Admin\\Desktop\\COMP2522TermProject\\bcit\\Game\\src\\main\\resources\\com\\example\\game\\character1.jpg"));
+            case 1 -> new Character("Sakae", 100, 2, 0, Card.TYPE.EARTH, new Image("C:\\Users\\Admin\\Desktop\\COMP2522TermProject\\bcit\\Game\\src\\main\\resources\\com\\example\\game\\character2.jpg"));
+            case 2 -> new Character("Kakashi", 120, 10, 5, Card.TYPE.FIRE, new Image("C:\\Users\\Admin\\Desktop\\COMP2522TermProject\\bcit\\Game\\src\\main\\resources\\com\\example\\game\\character3.jpg"));
+            case 3 -> new Character("RockLee", 95, 15, 2, Card.TYPE.FIRE, new Image("C:\\Users\\Admin\\Desktop\\COMP2522TermProject\\bcit\\Game\\src\\main\\resources\\com\\example\\game\\character4.jpg"));
+            case 4 -> new Character("Yamato", 37, 5, 2, Card.TYPE.EARTH, new Image("C:\\Users\\Admin\\Desktop\\COMP2522TermProject\\bcit\\Game\\src\\main\\resources\\com\\example\\game\\character5.jpg"));
+            case 5 -> new Character("Hero", 170, 4 , 2, Card.TYPE.FIRE, new Image("C:\\Users\\Admin\\Desktop\\COMP2522TermProject\\bcit\\Game\\src\\main\\resources\\com\\example\\game\\character6.jpg"));
             default -> null;
         };
     }
