@@ -23,16 +23,27 @@ final class Character {
     private final double defaultDefense;
     private final Card.TYPE type;
     private Card[] cards;
-    private Character(final String n, final double h, final int a, final double d, final Card.TYPE t, final Image i) {
-        this.name = n;
-        this.health = h;
-        this.agility = a;
+
+    /**
+     * Create new Character.
+     * @param characterName String name of Character
+     * @param characterHealth double health of Character
+     * @param characterAgility int agility stat of Character
+     * @param characterDefense double defense stat of Character
+     * @param cardType Type for Character
+     * @param characterImage Image for Character
+     */
+    private Character(final String characterName, final double characterHealth, final int characterAgility,
+                      final double characterDefense, final Card.TYPE cardType, final Image characterImage) {
+        this.name = characterName;
+        this.health = characterHealth;
+        this.agility = characterAgility;
         this.cards = new Card[5];
-        this.defense = d;
-        this.defaultDefense = d;
+        this.defense = characterDefense;
+        this.defaultDefense = characterDefense;
         this.maxHealth = h;
-        this.type = t;
-        this.characterImage = i;
+        this.type = cardType;
+        this.characterImage = characterImage;
     }
 
     public static Character generateEnemyCharacter() {
