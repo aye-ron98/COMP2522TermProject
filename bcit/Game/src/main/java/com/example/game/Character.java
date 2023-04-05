@@ -41,11 +41,15 @@ final class Character {
         this.cards = new Card[5];
         this.defense = characterDefense;
         this.defaultDefense = characterDefense;
-        this.maxHealth = h;
+        this.maxHealth = characterHealth;
         this.type = cardType;
         this.characterImage = characterImage;
     }
 
+    /**
+     *
+     * @return
+     */
     public static Character generateEnemyCharacter() {
         int generate = rand.nextInt(0, 6);
         return switch (generate) {

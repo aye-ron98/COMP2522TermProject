@@ -32,10 +32,10 @@ public final class Card {
 
     private final String description;
 
-    private Card(final TYPE t, final ACTION a, final int d, final String n, final String des) {
-        this.type = t;
-        this.action = a;
-        this.value = d;
+    private Card(final TYPE cardType, final ACTION cardAction, final int cardValue, final String n, final String des) {
+        this.type = cardType;
+        this.action = cardAction;
+        this.value = cardValue;
         this.name = n;
         this.description = des;
     }
