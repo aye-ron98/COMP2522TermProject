@@ -53,16 +53,21 @@ public final class Card {
      * Generate new cards.
      * @return Card that was generated
      */
-    //todo: add more cards & change magic numbers
     public static Card constructNewCard() {
-        int generate = rand.nextInt(0, 6);
+        int generate = rand.nextInt(0, 12);
         return switch (generate) {
             case 0 -> new Card(TYPE.AIR, ACTION.ATTACK, 5, "Fart", "an attack");
             case 1 -> new Card(TYPE.FIRE, ACTION.ATTACK, 10, "DrakeSpecial", "an attack");
             case 2 -> new Card(TYPE.EARTH, ACTION.ATTACK, 3, "Ouch", "an attack");
             case 3 -> new Card(TYPE.WATER, ACTION.ATTACK, 7, "SuperSoaker", "an attack");
             case 4 -> new Card(TYPE.AIR, ACTION.DEFEND, -5, "BlowAwau", "a defend");
-            case 5 -> new Card(TYPE.FIRE, ACTION.HEAL, 10, "KarateKidSpecial???", "heal move");
+            case 5 -> new Card(TYPE.FIRE, ACTION.HEAL, 10, "KarateKidSpecial???", "a heal");
+            case 6 -> new Card(TYPE.AIR, ACTION.HEAL, 5, "Blow away the pain", "a heal");
+            case 7 -> new Card(TYPE.EARTH, ACTION.HEAL, 3, "The Power of Mother Earth", "a heal");
+            case 8 -> new Card(TYPE.WATER, ACTION.HEAL, 15, "The Spring of Youth", "a heal");
+            case 9 -> new Card(TYPE.FIRE, ACTION.DEFEND, -6, "Wall of Fire", "a defend");
+            case 10 -> new Card(TYPE.WATER, ACTION.DEFEND, -4, "The Red Sea", "a defend");
+            case 11 -> new Card(TYPE.EARTH, ACTION.DEFEND, -10, "FRYING PAN", "the ultimate defense");
             default -> null;
         };
     }
