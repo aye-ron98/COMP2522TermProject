@@ -20,19 +20,20 @@ public class Game extends Application {
      * @throws IOException When I/O operations are interrupted
      */
     @Override
-    public void start(final Stage stage) throws IOException {
-        try {
+    public void start(final Stage stage){
             FXMLLoader fxmlLoader = new FXMLLoader(Game.class.getResource("hello-view.fxml"));
 
-            Scene scene = new Scene(fxmlLoader.load());
 
-            stage.setTitle("Game");
-            stage.setScene(scene);
+            try {
+                Scene scene = new Scene(fxmlLoader.load());
 
-            stage.show();
-        } catch (IOException e) {
-            throw new IOException();
-        }
+                stage.setTitle("Game");
+                stage.setScene(scene);
+
+                stage.show();
+            } catch (Exception e) {
+                System.out.println(e);
+            }
 
     }
 
