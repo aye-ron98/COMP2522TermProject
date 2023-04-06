@@ -32,12 +32,21 @@ public final class Card {
 
     private final String description;
 
-    private Card(final TYPE cardType, final ACTION cardAction, final int cardValue, final String n, final String des) {
+    /**
+     * Create new Card.
+     * @param cardType Type of Card
+     * @param cardAction Action that the Card can perform
+     * @param cardValue int value of Card that affects the potency of the Action
+     * @param cardName String name of Card
+     * @param cardDescription String description of Card
+     */
+    private Card(final TYPE cardType, final ACTION cardAction, final int cardValue, final String cardName,
+                 final String cardDescription) {
         this.type = cardType;
         this.action = cardAction;
         this.value = cardValue;
-        this.name = n;
-        this.description = des;
+        this.name = cardName;
+        this.description = cardDescription;
     }
 
     /**

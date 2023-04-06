@@ -14,12 +14,11 @@ import java.util.Random;
 final class Character {
     private static final Random rand = new Random();
     private final String name;
-    private final double health;
+    private double health;
     private int agility;
     private double defense;
     private final double maxHealth;
     private final Image characterImage;
-
     private final double defaultDefense;
     private final Card.TYPE type;
     private Card[] cards;
@@ -47,8 +46,8 @@ final class Character {
     }
 
     /**
-     *
-     * @return
+     * Generate an enemy Character.
+     * @return Character of enemy
      */
     public static Character generateEnemyCharacter() {
         int generate = rand.nextInt(0, 6);
@@ -62,56 +61,109 @@ final class Character {
             default -> null;
         };
     }
+
+    /**
+     * Get health of Character.
+     * @return double of Character health
+     */
     public double getHealth() {
         return health;
     }
 
+    /**
+     * Get percentage health of Character.
+     * @return double of percentage health of Character
+     */
     public double getHealthPercent() {
         return this.health / this.maxHealth;
     }
 
+    /**
+     * Get defense stat of Character.
+     * @return double of defense stat of Character
+     */
     public double getDefense() {
         return defense;
     }
 
+    /**
+     * Get image sprite of Character.
+     * @return Image sprite of Character
+     */
     public Image getCharacterImage() {
         return this.characterImage;
     }
 
+    /**
+     * Get agility stat of Character.
+     * @return int agility stat of Character.
+     */
     public int getAgility() {
         return agility;
     }
 
+    /**
+     * Get Card element Type.
+     * @return Type of Card
+     */
     public Card.TYPE getType() {
         return type;
     }
 
-    public double getDEFAULTDEFENSE() {
+    /**
+     * Get the default defense of Character.
+     * @return double default defense of Character
+     */
+    public double getDefaultDefense() {
         return this.defaultDefense;
     }
 
+    /**
+     * Get percentage of defense of Character.
+     * @return double percentage defense of Character
+     */
     public double getDefensePercent() {
         return this.defense / this.defaultDefense;
     }
 
+    /**
+     * Set agility stat of Character.
+     * @param agility int agility stat
+     */
     public void setAgility(final int agility) {
         this.agility = agility;
     }
 
+    /**
+     * Set health bar of Character.
+     * @param health double health stat of Character
+     */
     public void setHealth(final double health) {
         this.health = health;
     }
 
+    /**
+     * Set defense stat of Character.
+     * @param defense double defense stat of Character
+     */
     public void setDefense(final double defense) {
         this.defense = defense;
     }
 
+    /**
+     * Get new Cards.
+     */
     public void getCards() {
         for (int i = 0; i < cards.length; i++) {
             cards[i] = Card.constructNewCard();
         }
     }
 
+    /**
+     * Return Cards to player.
+     * @param choice int number of Card choice
+     * @return Card chosen by player
+     */
     public Card returnCard(final int choice) {
         Card toReturn = this.cards[choice];
         this.cards[choice] = Card.constructNewCard();
@@ -119,20 +171,35 @@ final class Character {
         return toReturn;
     }
 
+    /**
+     * Construct new Cards for use in Battle.
+     */
     public void getCardsForBattle() {
         for (int i = 0; i < cards.length; i++) {
             this.cards[i] = Card.constructNewCard();
         }
     }
 
+    /**
+     * Get the name of the Card.
+     * @param select int choice of Card
+     * @return String name of Card
+     */
     public String getCardName(final int select) {
         return this.cards[select].toString();
     }
 
+    /**
+     * Remove all current Cards.
+     */
     public void clearCards() {
         this.cards = new Card[5];
     }
 
+    /**
+     * Return name of Card as String.
+     * @return String name of Card
+     */
     @Override
     public String toString() {
         return this.name;

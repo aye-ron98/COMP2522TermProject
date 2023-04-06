@@ -33,7 +33,9 @@ public class GameController extends Thread {
      */
     Card move;
 
-    // scense assets
+    /**
+     * Assets for Scenes.
+     */
     @FXML
     private DialogPane dialogText;
     @FXML
@@ -108,6 +110,9 @@ public class GameController extends Thread {
 //        }
 //    }
 
+    /**
+     * Run enemy turn.
+     */
     private void enemyTurn() {
         move = battle.enemyTurn();
 
@@ -124,6 +129,12 @@ public class GameController extends Thread {
         gameOver();
     }
 
+    /**
+     * Run player turn.
+     * @param choice int choice for Card
+     * @param button Button pressed for int choice of Card
+     * @param toolTip Tooltip String for Card choice
+     */
     private void playerTurn(final int choice, final Button button, final Tooltip toolTip) {
         nextEnemyTurn.setContentText(String.format("%s will use %s next!", enemy.toString(),
                 battle.nextEnemyTurn().toString()));

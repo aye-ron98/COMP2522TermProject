@@ -41,6 +41,10 @@ public class Battle {
 
         }
 
+        /**
+         * Remove top-most Card in the Stack.
+         * @return Card that was the top-most in the Stack
+         */
         Card pop() {
             checkStack();
             this.size--;
@@ -50,12 +54,18 @@ public class Battle {
             return toReturn;
         }
 
+        /**
+         * Look at the top-most Card in the Stack.
+         * @return Card that was the top-most in the Stack
+         */
         Card peek() {
             checkStack();
             return cards[this.size - 1];
-
         }
 
+        /**
+         * Check Stack to construct Cards.
+         */
         void checkStack() {
             if (this.size - 1 < 0) {
                 this.size = DEFAULT_SIZE;
@@ -63,7 +73,6 @@ public class Battle {
                 for (int i = 0; i < this.size; i++) {
                     cards[i] = Card.constructNewCard();
                 }
-
             }
         }
     }
@@ -81,11 +90,11 @@ public class Battle {
      * Stack of turns of both the player and the enemy.
      */
     Stack stack;
-    Battle(final Character p, final Character e) {
-        this.player = p;
-        this.enemy = e;
+    Battle(final Character playerCharacter, final Character enemyCharacter) {
+        this.player = playerCharacter;
+        this.enemy = enemyCharacter;
 
-        p.getCardsForBattle();
+        playerCharacter.getCardsForBattle();
         this.stack = new Stack();
     }
 
@@ -107,34 +116,33 @@ public class Battle {
 
     /**
      * Select card to play by the user.
-     * @param c Character the player is playing as
+     * @param playerCharacter Character the player is playing as
      * @param choice int of the Card that the player has selected
      * @return Card that player has selected
      */
-    public Card select(final Character c, final int choice) {
-        Card returnCard = c.returnCard(choice);
+    public Card select(final Character playerCharacter, final int choice) {
+        Card returnCard = playerCharacter.returnCard(choice);
         System.out.printf("You have selected %s!\n", returnCard.toString());
         return returnCard;
     }
 
     /**
      * Reset the Character's Defense stats to the default Defense stats.
-     * @param c Character the player is playing as
+     * @param defenseResetCharacter Character that must have their Defense reset
      */
-    public void resetDefense(final Character c) {
-        c.setDefense(c.getDEFAULTDEFENSE());
+    public void resetDefense(final Character defenseResetCharacter) {
+        defenseResetCharacter.setDefense(defenseResetCharacter.getDefaultDefense());
     }
 
     /**
      * Perform the action done from one Character to the other.
      * @param current Character dealing the action
      * @param next Character receiving the action
-     * @param c Card chosen as the action
+     * @param chosenCard Card chosen as the action
      */
-    public void perform(final Character current, final Character next, final Card c) {
-
-        Card.ACTION action = c.getAction();
-        Card.TYPE type = c.getType();
+    public void perform(final Character current, final Character next, final Card chosenCard) {
+        Card.ACTION action = chosenCard.getAction();
+        Card.TYPE type = chosenCard.getType();
         Card.TYPE tempPlayer;
 
         Card.TYPE currentPlayerType = current.getType();
@@ -147,7 +155,6 @@ public class Battle {
         }
 
         double typeMultiplier;
-
 
         if (type == Card.TYPE.AIR && tempPlayer == Card.TYPE.AIR) {
             typeMultiplier = SAME_TYPE_MULTIPLIER;
@@ -184,17 +191,15 @@ public class Battle {
         } else {
             typeMultiplier = 0;
         }
-
-
         if (action == Card.ACTION.ATTACK) {
-            int damageDealt = (int) ((c.getValue() - next.getDefense()) * typeMultiplier);
+            int damageDealt = (int) ((chosenCard.getValue() - next.getDefense()) * typeMultiplier);
             if (damageDealt > 0) {
-                next.setHealth(next.getHealth() - c.getValue());
+                next.setHealth(next.getHealth() - chosenCard.getValue());
             }
         } else if (action == Card.ACTION.DEFEND) {
-            current.setDefense((int) ((current.getDefense() + c.getValue()) * typeMultiplier));
+            current.setDefense((int) ((current.getDefense() + chosenCard.getValue()) * typeMultiplier));
         } else if (action == Card.ACTION.HEAL) {
-            current.setHealth((int) ((current.getHealth() + c.getValue()) * typeMultiplier));
+            current.setHealth((int) ((current.getHealth() + chosenCard.getValue()) * typeMultiplier));
         }
 
     }
