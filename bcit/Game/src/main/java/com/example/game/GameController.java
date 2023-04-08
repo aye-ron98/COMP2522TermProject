@@ -102,13 +102,6 @@ public class GameController extends Thread {
             cardFive.setVisible(false);
         }
     }
-//    private void pause() {
-//        try {
-//            Thread.sleep(500);
-//        } catch (InterruptedException e) {
-//            Thread.currentThread().interrupt();
-//        }
-//    }
 
     /**
      * Run enemy turn.
@@ -165,7 +158,6 @@ public class GameController extends Thread {
     @FXML
     protected void cardOneOnClick() {
         playerTurn(0, cardOne, cardOneToolTip);
-//        pause();
         enemyTurn();
     }
 
@@ -175,7 +167,6 @@ public class GameController extends Thread {
     @FXML
     protected void cardTwoOnClick() {
         playerTurn(1, cardTwo, cardTwoToolTip);
-//        pause();
         enemyTurn();
     }
     /**
@@ -184,7 +175,6 @@ public class GameController extends Thread {
     @FXML
     protected void cardThreeOnClick() {
         playerTurn(2, cardThree, cardThreeToolTip);
-//        pause();
         enemyTurn();
     }
     /**
@@ -193,7 +183,6 @@ public class GameController extends Thread {
     @FXML
     protected void cardFourOnClick() {
         playerTurn(3, cardFour, cardFourToolTip);
-//        pause();
         enemyTurn();
     }
     /**
@@ -202,7 +191,6 @@ public class GameController extends Thread {
     @FXML
     protected void cardFiveOnClick() {
         playerTurn(4, cardFive, cardFiveToolTip);
-//        pause();
         enemyTurn();
     }
 
